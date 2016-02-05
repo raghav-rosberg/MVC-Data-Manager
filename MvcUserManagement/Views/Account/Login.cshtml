@@ -1,0 +1,15 @@
+﻿@using MvcDataManager
+@model MvcDataManager.Model.UserLogin
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/LoginPanel.css" rel="stylesheet" />
+
+@using (Html.BeginForm("Login", "Account"))
+{
+    <div>
+        @Html.LoginControlForModel(m => m.UserName, m => m.Password, "Login", "Member Log in", true, false, true)
+    </div>
+}

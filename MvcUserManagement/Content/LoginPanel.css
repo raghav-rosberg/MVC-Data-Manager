@@ -1,0 +1,49 @@
+﻿.loginPanel {
+    background-color: white;
+    margin: 10px;  
+}
+
+/* For login panel header */
+.loginPanel div[data-header]{
+    background-color: darkslateblue;
+    color: white;
+    font-family: Arial;
+    font-size: large;     
+}
+
+/* For login panel contnet */
+.loginPanel div[data-loginContent]{
+    color: darkslateblue;
+    font-family: Arial; 
+}
+
+/* For Login button */
+.loginPanel button{
+    background-color: darkslateblue;
+    color: white;  
+    font-weight: bold;      
+}
+
+/* For Login button - change style on hover */
+/*
+.loginPanel button:hover{
+}
+*/
+
+/* For error messages */
+.loginPanel span{
+    color: red;
+    font-style: italic;
+}
+
+/* For links */
+.loginPanel a{
+    color: grey;
+    font-style: italic;
+}
+
+/* For links - change style on hover */
+/*
+.loginPanel a:hover{
+}
+*/
