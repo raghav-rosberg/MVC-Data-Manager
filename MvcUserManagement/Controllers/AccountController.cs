@@ -12,23 +12,15 @@ namespace MvcUserManagement.Controllers
     public class AccountController : Controller
     {
         private readonly UserRepository _userRepository;
-        private readonly EmployeeRepository _employeeRepository;
-
         public AccountController()
         {
             _userRepository = new UserRepository(Startup.DataProtectionProvider);
-            _employeeRepository = new EmployeeRepository();
         }
 
         #region Index
         [Authorize]
         public ActionResult Index()
         {
-            _employeeRepository.InsertEmployee(new Employee
-            {
-                Name = "Raghav"
-            });
-
             var users = _userRepository.GetAll();
             return View(users);
         }

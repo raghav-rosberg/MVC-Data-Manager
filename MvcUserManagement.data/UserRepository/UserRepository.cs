@@ -9,11 +9,13 @@ namespace MvcUserManagement.data.UserRepository
 {
     public class UserRepository : IUserRepository
     {
-        private readonly IUserRepository<MvcUserManagementDbContext> _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly MvcDataManager.IUserRepository _userRepository;
 
         public UserRepository(IDataProtectionProvider dataProtectionProvider) 
         {
-            _userRepository = new UserRepository<MvcUserManagementDbContext>(dataProtectionProvider);
+            _unitOfWork = new UnitOfWork(new MvcUserManagementDbContext());
+            _userRepository = new MvcDataManager.UserRepository(dataProtectionProvider, _unitOfWork);
         }
 
         public IEnumerable<ApplicationUser> GetAll()

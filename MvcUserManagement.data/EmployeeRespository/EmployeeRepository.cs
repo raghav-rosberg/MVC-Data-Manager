@@ -7,10 +7,10 @@ namespace MvcUserManagement.data.EmployeeRespository
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<Employee> _employeeRepository;
-        public EmployeeRepository()
+        public EmployeeRepository(IUnitOfWork unitOfWork, IRepository<Employee> employeeRepository)
         {
-            _unitOfWork = new UnitOfWork(new MvcUserManagementDbContext());
-            _employeeRepository = new RepositoryBase<Employee>(_unitOfWork);
+            _unitOfWork = unitOfWork;
+            _employeeRepository = employeeRepository;
         }
 
         public IEnumerable<Employee> GetAll()

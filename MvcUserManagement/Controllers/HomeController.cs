@@ -6,11 +6,11 @@ namespace MvcUserManagement.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly EmployeeRepository _employeeRepository;
+        private readonly IEmployeeRepository _employeeRepository;
 
-        public HomeController()
+        public HomeController(IEmployeeRepository employeeRepository)
         {
-            _employeeRepository = new EmployeeRepository();
+            _employeeRepository = employeeRepository;
         }
 
         //
@@ -18,10 +18,10 @@ namespace MvcUserManagement.Controllers
 
         public ActionResult Index()
         {
-            _employeeRepository.InsertEmployee(new Employee
-            {
-                Name = "Raghav"
-            });
+            //_employeeRepository.InsertEmployee(new Employee
+            //{
+            //    Name = "Raghav"
+            //});
 
             //var userRepository = new UserRepository();
 
