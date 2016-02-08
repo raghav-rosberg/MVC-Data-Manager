@@ -16,6 +16,7 @@ namespace MvcUserManagement.data
         }
 
         public DbSet<SecurityQuestion> SecurityQuestion { get; set; }
+        public DbSet<Employee> Employee { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -24,5 +25,11 @@ namespace MvcUserManagement.data
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
+    }
+
+    public class Employee
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

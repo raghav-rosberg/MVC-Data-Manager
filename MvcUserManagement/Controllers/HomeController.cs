@@ -1,14 +1,28 @@
 ﻿using System.Web.Mvc;
+using MvcUserManagement.data;
+using MvcUserManagement.data.EmployeeRespository;
 
-namespace UserManagementPortal.Controllers
+namespace MvcUserManagement.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly EmployeeRepository _employeeRepository;
+
+        public HomeController()
+        {
+            _employeeRepository = new EmployeeRepository();
+        }
+
         //
         // GET: /Home/
 
         public ActionResult Index()
         {
+            _employeeRepository.InsertEmployee(new Employee
+            {
+                Name = "Raghav"
+            });
+
             //var userRepository = new UserRepository();
 
             //userRepository.Create(new ApplicationUser

@@ -77,8 +77,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MvcDataManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvcDataManager.1.0.0.13\lib\net45\MvcDataManager.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MvcDataManager\MvcDataManager\bin\Release\MvcDataManager.dll</HintPath>
     </Reference>
     <Reference Include="MvcDataManager.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvcDataManager.Model.1.0.0.2\lib\net45\MvcDataManager.Model.dll</HintPath>
@@ -98,7 +98,7 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\UserManagementPortal\UserManagementPortal\bin\System.Web.Mvc.dll</HintPath>
+      <HintPath>C:\Users\raghavendran\Documents\Visual Studio 2012\Projects\UserManagementPortal\MvcDataManager\bin\Debug\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -110,6 +110,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MvcUserManagementDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EmployeeRespository\IEmployeeRepository.cs" />
+    <Compile Include="EmployeeRespository\EmployeeRepository.cs" />
     <Compile Include="UserRepository\IUserRepository.cs" />
     <Compile Include="UserRepository\UserRepository.cs" />
   </ItemGroup>
