@@ -20,10 +20,10 @@ namespace MvcUserManagement.App_Start
     {
         public static void Run()
         {
-            SetLightInjectContainer();
+            SetAutoFacContainer();
         }
 
-        private static void SetLightInjectContainer()
+        private static void SetAutoFacContainer()
         {
             var dbContext = new MvcUserManagementDbContext();
             var builder = new ContainerBuilder();
@@ -34,11 +34,6 @@ namespace MvcUserManagement.App_Start
             builder.RegisterGeneric(typeof(RepositoryBase<>)).As(typeof(IRepository<>));
             
             builder.RegisterType<EmployeeRepository>().As<IEmployeeRepository>().InstancePerLifetimeScope();
-
-            //builder.Register(c => new MvcUserManagement.data.UserRepository.UserRepository(Startup.DataProtectionProvider, dbContext))
-            //    .As<MvcUserManagement.data.UserRepository.IUserRepository>().InstancePerLifetimeScope();
-
-            //builder.RegisterType<MvcUserManagement.data.UserRepository.UserRepository>().As<MvcUserManagement.data.UserRepository.IUserRepository>().InstancePerLifetimeScope();
 
             IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));    
