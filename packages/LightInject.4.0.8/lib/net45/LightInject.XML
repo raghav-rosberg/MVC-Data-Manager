@@ -4,9 +4,22 @@
         <name>LightInject</name>
     </assembly>
     <members>
+        <member name="T:LightInject.GetInstanceDelegate">
+            <summary>
+            A delegate that represent the dynamic method compiled to resolved service instances.
+            </summary>
+            <param name="args">The arguments used by the dynamic method that this delegate represents.</param>
+            <returns>A service instance.</returns>
+        </member>
         <member name="T:LightInject.IServiceRegistry">
             <summary>
             Defines a set of methods used to register services into the service container.
+            </summary>
+        </member>
+        <member name="P:LightInject.IServiceRegistry.AvailableServices">
+            <summary>
+            Gets a list of <see cref="T:LightInject.ServiceRegistration"/> instances that represents the
+            registered services.
             </summary>
         </member>
         <member name="M:LightInject.IServiceRegistry.Register(System.Type,System.Type)">
@@ -75,14 +88,14 @@
         </member>
         <member name="M:LightInject.IServiceRegistry.RegisterInstance``1(``0)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the given <paramref name="instance"/>. 
+            Registers the <typeparamref name="TService"/> with the given <paramref name="instance"/>.
             </summary>
             <typeparam name="TService">The service type to register.</typeparam>
             <param name="instance">The instance returned when this service is requested.</param>
         </member>
         <member name="M:LightInject.IServiceRegistry.RegisterInstance``1(``0,System.String)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the given <paramref name="instance"/>. 
+            Registers the <typeparamref name="TService"/> with the given <paramref name="instance"/>.
             </summary>
             <typeparam name="TService">The service type to register.</typeparam>
             <param name="instance">The instance returned when this service is requested.</param>
@@ -90,14 +103,14 @@
         </member>
         <member name="M:LightInject.IServiceRegistry.RegisterInstance(System.Type,System.Object)">
             <summary>
-            Registers the <paramref name="serviceType"/> with the given <paramref name="instance"/>. 
+            Registers the <paramref name="serviceType"/> with the given <paramref name="instance"/>.
             </summary>
             <param name="serviceType">The service type to register.</param>
             <param name="instance">The instance returned when this service is requested.</param>
         </member>
         <member name="M:LightInject.IServiceRegistry.RegisterInstance(System.Type,System.Object,System.String)">
             <summary>
-            Registers the <paramref name="serviceType"/> with the given <paramref name="instance"/>. 
+            Registers the <paramref name="serviceType"/> with the given <paramref name="instance"/>.
             </summary>
             <param name="serviceType">The service type to register.</param>
             <param name="instance">The instance returned when this service is requested.</param>
@@ -129,128 +142,128 @@
             <param name="serviceType">The concrete type to register.</param>
             <param name="lifetime">The <see cref="T:LightInject.ILifetime"/> instance that controls the lifetime of the registered service.</param>
         </member>
-        <member name="M:LightInject.IServiceRegistry.Register``1(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0}})">
+        <member name="M:LightInject.IServiceRegistry.Register``1(System.Func{LightInject.IServiceFactory,``0})">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="TService">The service type to register.</typeparam>
-            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>    
+            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>
         </member>
-        <member name="M:LightInject.IServiceRegistry.Register``2(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0,``1}})">
+        <member name="M:LightInject.IServiceRegistry.Register``2(System.Func{LightInject.IServiceFactory,``0,``1})">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="T">The parameter type.</typeparam>
-            <typeparam name="TService">The service type to register.</typeparam>        
-            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>    
+            <typeparam name="TService">The service type to register.</typeparam>
+            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>
         </member>
-        <member name="M:LightInject.IServiceRegistry.Register``2(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0,``1}},System.String)">
+        <member name="M:LightInject.IServiceRegistry.Register``2(System.Func{LightInject.IServiceFactory,``0,``1},System.String)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="T">The parameter type.</typeparam>
-            <typeparam name="TService">The service type to register.</typeparam>        
-            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param> 
-            <param name="serviceName">The name of the service.</param>        
-        </member>
-        <member name="M:LightInject.IServiceRegistry.Register``3(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0,``1,``2}})">
-            <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
-            </summary>
-            <typeparam name="T1">The type of the first parameter.</typeparam>
-            <typeparam name="T2">The type of the second parameter.</typeparam>
-            <typeparam name="TService">The service type to register.</typeparam>        
-            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>    
-        </member>
-        <member name="M:LightInject.IServiceRegistry.Register``3(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0,``1,``2}},System.String)">
-            <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
-            </summary>
-            <typeparam name="T1">The type of the first parameter.</typeparam>
-            <typeparam name="T2">The type of the second parameter.</typeparam>
-            <typeparam name="TService">The service type to register.</typeparam>        
-            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>    
+            <typeparam name="TService">The service type to register.</typeparam>
+            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>
             <param name="serviceName">The name of the service.</param>
         </member>
-        <member name="M:LightInject.IServiceRegistry.Register``4(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0,``1,``2,``3}})">
+        <member name="M:LightInject.IServiceRegistry.Register``3(System.Func{LightInject.IServiceFactory,``0,``1,``2})">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
+            </summary>
+            <typeparam name="T1">The type of the first parameter.</typeparam>
+            <typeparam name="T2">The type of the second parameter.</typeparam>
+            <typeparam name="TService">The service type to register.</typeparam>
+            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>
+        </member>
+        <member name="M:LightInject.IServiceRegistry.Register``3(System.Func{LightInject.IServiceFactory,``0,``1,``2},System.String)">
+            <summary>
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
+            </summary>
+            <typeparam name="T1">The type of the first parameter.</typeparam>
+            <typeparam name="T2">The type of the second parameter.</typeparam>
+            <typeparam name="TService">The service type to register.</typeparam>
+            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>
+            <param name="serviceName">The name of the service.</param>
+        </member>
+        <member name="M:LightInject.IServiceRegistry.Register``4(System.Func{LightInject.IServiceFactory,``0,``1,``2,``3})">
+            <summary>
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="T1">The type of the first parameter.</typeparam>
             <typeparam name="T2">The type of the second parameter.</typeparam>
             <typeparam name="T3">The type of the third parameter.</typeparam>
-            <typeparam name="TService">The service type to register.</typeparam>        
-            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>    
+            <typeparam name="TService">The service type to register.</typeparam>
+            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>
         </member>
-        <member name="M:LightInject.IServiceRegistry.Register``4(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0,``1,``2,``3}},System.String)">
+        <member name="M:LightInject.IServiceRegistry.Register``4(System.Func{LightInject.IServiceFactory,``0,``1,``2,``3},System.String)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="T1">The type of the first parameter.</typeparam>
             <typeparam name="T2">The type of the second parameter.</typeparam>
             <typeparam name="T3">The type of the third parameter.</typeparam>
-            <typeparam name="TService">The service type to register.</typeparam>        
-            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>    
+            <typeparam name="TService">The service type to register.</typeparam>
+            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>
             <param name="serviceName">The name of the service.</param>
         </member>
-        <member name="M:LightInject.IServiceRegistry.Register``5(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0,``1,``2,``3,``4}})">
+        <member name="M:LightInject.IServiceRegistry.Register``5(System.Func{LightInject.IServiceFactory,``0,``1,``2,``3,``4})">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="T1">The type of the first parameter.</typeparam>
             <typeparam name="T2">The type of the second parameter.</typeparam>
             <typeparam name="T3">The type of the third parameter.</typeparam>
             <typeparam name="T4">The type of the fourth parameter.</typeparam>
-            <typeparam name="TService">The service type to register.</typeparam>        
-            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>    
+            <typeparam name="TService">The service type to register.</typeparam>
+            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>
         </member>
-        <member name="M:LightInject.IServiceRegistry.Register``5(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0,``1,``2,``3,``4}},System.String)">
+        <member name="M:LightInject.IServiceRegistry.Register``5(System.Func{LightInject.IServiceFactory,``0,``1,``2,``3,``4},System.String)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="T1">The type of the first parameter.</typeparam>
             <typeparam name="T2">The type of the second parameter.</typeparam>
             <typeparam name="T3">The type of the third parameter.</typeparam>
             <typeparam name="T4">The type of the fourth parameter.</typeparam>
-            <typeparam name="TService">The service type to register.</typeparam>        
-            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>    
+            <typeparam name="TService">The service type to register.</typeparam>
+            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>
             <param name="serviceName">The name of the service.</param>
         </member>
-        <member name="M:LightInject.IServiceRegistry.Register``1(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0}},LightInject.ILifetime)">
+        <member name="M:LightInject.IServiceRegistry.Register``1(System.Func{LightInject.IServiceFactory,``0},LightInject.ILifetime)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="expression"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="TService">The service type to register.</typeparam>
-            <param name="expression">The lambdaExpression that describes the dependencies of the service.</param>
+            <param name="factory">The lambdaExpression that describes the dependencies of the service.</param>
             <param name="lifetime">The <see cref="T:LightInject.ILifetime"/> instance that controls the lifetime of the registered service.</param>
         </member>
-        <member name="M:LightInject.IServiceRegistry.Register``1(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0}},System.String)">
+        <member name="M:LightInject.IServiceRegistry.Register``1(System.Func{LightInject.IServiceFactory,``0},System.String)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="expression"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="TService">The service type to register.</typeparam>
-            <param name="expression">The lambdaExpression that describes the dependencies of the service.</param>
-            <param name="serviceName">The name of the service.</param>        
+            <param name="factory">The lambdaExpression that describes the dependencies of the service.</param>
+            <param name="serviceName">The name of the service.</param>
         </member>
-        <member name="M:LightInject.IServiceRegistry.Register``1(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0}},System.String,LightInject.ILifetime)">
+        <member name="M:LightInject.IServiceRegistry.Register``1(System.Func{LightInject.IServiceFactory,``0},System.String,LightInject.ILifetime)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="expression"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="TService">The service type to register.</typeparam>
-            <param name="expression">The lambdaExpression that describes the dependencies of the service.</param>
-            <param name="serviceName">The name of the service.</param>        
+            <param name="factory">The lambdaExpression that describes the dependencies of the service.</param>
+            <param name="serviceName">The name of the service.</param>
             <param name="lifetime">The <see cref="T:LightInject.ILifetime"/> instance that controls the lifetime of the registered service.</param>
         </member>
         <member name="M:LightInject.IServiceRegistry.RegisterFallback(System.Func{System.Type,System.String,System.Boolean},System.Func{LightInject.ServiceRequest,System.Object})">
@@ -276,13 +289,13 @@
         </member>
         <member name="M:LightInject.IServiceRegistry.RegisterAssembly(System.Reflection.Assembly)">
             <summary>
-            Registers services from the given <paramref name="assembly"/>.
+            Registers composition roots from the given <paramref name="assembly"/>.
             </summary>
-            <param name="assembly">The assembly to be scanned for services.</param>        
+            <param name="assembly">The assembly to be scanned for services.</param>
             <remarks>
-            If the target <paramref name="assembly"/> contains an implementation of the <see cref="T:LightInject.ICompositionRoot"/> interface, this 
+            If the target <paramref name="assembly"/> contains an implementation of the <see cref="T:LightInject.ICompositionRoot"/> interface, this
             will be used to configure the container.
-            </remarks>     
+            </remarks>
         </member>
         <member name="M:LightInject.IServiceRegistry.RegisterAssembly(System.Reflection.Assembly,System.Func{System.Type,System.Type,System.Boolean})">
             <summary>
@@ -291,20 +304,20 @@
             <param name="assembly">The assembly to be scanned for services.</param>
             <param name="shouldRegister">A function delegate that determines if a service implementation should be registered.</param>
             <remarks>
-            If the target <paramref name="assembly"/> contains an implementation of the <see cref="T:LightInject.ICompositionRoot"/> interface, this 
+            If the target <paramref name="assembly"/> contains an implementation of the <see cref="T:LightInject.ICompositionRoot"/> interface, this
             will be used to configure the container.
-            </remarks>     
+            </remarks>
         </member>
         <member name="M:LightInject.IServiceRegistry.RegisterAssembly(System.Reflection.Assembly,System.Func{LightInject.ILifetime})">
             <summary>
             Registers services from the given <paramref name="assembly"/>.
             </summary>
             <param name="assembly">The assembly to be scanned for services.</param>
-            <param name="lifetime">The <see cref="T:LightInject.ILifetime"/> instance that controls the lifetime of the registered service.</param>
+            <param name="lifetimeFactory">The <see cref="T:LightInject.ILifetime"/> factory that controls the lifetime of the registered service.</param>
             <remarks>
-            If the target <paramref name="assembly"/> contains an implementation of the <see cref="T:LightInject.ICompositionRoot"/> interface, this 
+            If the target <paramref name="assembly"/> contains an implementation of the <see cref="T:LightInject.ICompositionRoot"/> interface, this
             will be used to configure the container.
-            </remarks>     
+            </remarks>
         </member>
         <member name="M:LightInject.IServiceRegistry.RegisterAssembly(System.Reflection.Assembly,System.Func{LightInject.ILifetime},System.Func{System.Type,System.Type,System.Boolean})">
             <summary>
@@ -314,15 +327,45 @@
             <param name="lifetimeFactory">The <see cref="T:LightInject.ILifetime"/> factory that controls the lifetime of the registered service.</param>
             <param name="shouldRegister">A function delegate that determines if a service implementation should be registered.</param>
             <remarks>
-            If the target <paramref name="assembly"/> contains an implementation of the <see cref="T:LightInject.ICompositionRoot"/> interface, this 
+            If the target <paramref name="assembly"/> contains an implementation of the <see cref="T:LightInject.ICompositionRoot"/> interface, this
             will be used to configure the container.
-            </remarks>     
+            </remarks>
         </member>
         <member name="M:LightInject.IServiceRegistry.RegisterFrom``1">
             <summary>
             Registers services from the given <typeparamref name="TCompositionRoot"/> type.
             </summary>
             <typeparam name="TCompositionRoot">The type of <see cref="T:LightInject.ICompositionRoot"/> to register from.</typeparam>
+        </member>
+        <member name="M:LightInject.IServiceRegistry.RegisterConstructorDependency``1(System.Func{LightInject.IServiceFactory,System.Reflection.ParameterInfo,``0})">
+            <summary>
+            Registers a factory delegate to be used when resolving a constructor dependency for
+            a implicitly registered service.
+            </summary>
+            <typeparam name="TDependency">The dependency type.</typeparam>
+            <param name="factory">The factory delegate used to create an instance of the dependency.</param>
+        </member>
+        <member name="M:LightInject.IServiceRegistry.RegisterConstructorDependency``1(System.Func{LightInject.IServiceFactory,System.Reflection.ParameterInfo,System.Object[],``0})">
+            <summary>
+            Registers a factory delegate to be used when resolving a constructor dependency for
+            a implicitly registered service.
+            </summary>
+            <typeparam name="TDependency">The dependency type.</typeparam>
+            <param name="factory">The factory delegate used to create an instance of the dependency.</param>
+        </member>
+        <member name="M:LightInject.IServiceRegistry.RegisterPropertyDependency``1(System.Func{LightInject.IServiceFactory,System.Reflection.PropertyInfo,``0})">
+            <summary>
+            Registers a factory delegate to be used when resolving a constructor dependency for
+            a implicitly registered service.
+            </summary>
+            <typeparam name="TDependency">The dependency type.</typeparam>
+            <param name="factory">The factory delegate used to create an instance of the dependency.</param>
+        </member>
+        <member name="M:LightInject.IServiceRegistry.RegisterAssembly(System.String)">
+            <summary>
+            Registers composition roots from assemblies in the base directory that matches the <paramref name="searchPattern"/>.
+            </summary>
+            <param name="searchPattern">The search pattern used to filter the assembly files.</param>
         </member>
         <member name="M:LightInject.IServiceRegistry.Decorate(System.Type,System.Type,System.Func{LightInject.ServiceRegistration,System.Boolean})">
             <summary>
@@ -338,7 +381,7 @@
             Decorates the <paramref name="serviceType"/> with the given <paramref name="decoratorType"/>.
             </summary>
             <param name="serviceType">The target service type.</param>
-            <param name="decoratorType">The decorator type used to decorate the <paramref name="serviceType"/>.</param>        
+            <param name="decoratorType">The decorator type used to decorate the <paramref name="serviceType"/>.</param>
         </member>
         <member name="M:LightInject.IServiceRegistry.Decorate``2">
             <summary>
@@ -347,7 +390,7 @@
             <typeparam name="TService">The target service type.</typeparam>
             <typeparam name="TDecorator">The decorator type used to decorate the <typeparamref name="TService"/>.</typeparam>
         </member>
-        <member name="M:LightInject.IServiceRegistry.Decorate``1(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0,``0}})">
+        <member name="M:LightInject.IServiceRegistry.Decorate``1(System.Func{LightInject.IServiceFactory,``0,``0})">
             <summary>
             Decorates the <typeparamref name="TService"/> using the given decorator <paramref name="factory"/>.
             </summary>
@@ -369,11 +412,18 @@
             <param name="serviceRegistrationFactory">The factory delegate used to create a <see cref="T:LightInject.ServiceRegistration"/> that overrides
             the incoming <see cref="T:LightInject.ServiceRegistration"/>.</param>
         </member>
-        <member name="P:LightInject.IServiceRegistry.AvailableServices">
+        <member name="M:LightInject.IServiceRegistry.Initialize(System.Func{LightInject.ServiceRegistration,System.Boolean},System.Action{LightInject.IServiceFactory,System.Object})">
             <summary>
-            Gets a list of <see cref="T:LightInject.ServiceRegistration"/> instances that represents the 
-            registered services.          
+            Allows post-processing of a service instance.
             </summary>
+            <param name="predicate">A function delegate that determines if the given service can be post-processed.</param>
+            <param name="processor">An action delegate that exposes the created service instance.</param>
+        </member>
+        <member name="M:LightInject.IServiceRegistry.SetDefaultLifetime``1">
+            <summary>
+            Sets the default lifetime for types registered without an explicit lifetime. Will only affect new registrations (after this call).
+            </summary>
+            <typeparam name="T">The default lifetime type</typeparam>
         </member>
         <member name="T:LightInject.IServiceFactory">
             <summary>
@@ -412,7 +462,7 @@
             </summary>
             <param name="serviceType">The type of the requested service.</param>
             <param name="serviceName">The name of the requested service.</param>
-            <param name="arguments">The arguments to be passed to the target instance.</param>        
+            <param name="arguments">The arguments to be passed to the target instance.</param>
             <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.IServiceFactory.GetInstance(System.Type,System.String)">
@@ -436,26 +486,26 @@
             </summary>
             <typeparam name="TService">The type of the requested service.</typeparam>
             <param name="serviceName">The name of the requested service.</param>
-            <returns>The requested service instance.</returns>    
+            <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.IServiceFactory.GetInstance``2(``0)">
             <summary>
             Gets an instance of the given <typeparamref name="TService"/>.
             </summary>
             <typeparam name="T">The type of the argument.</typeparam>
-            <typeparam name="TService">The type of the requested service.</typeparam>        
+            <typeparam name="TService">The type of the requested service.</typeparam>
             <param name="value">The argument value.</param>
-            <returns>The requested service instance.</returns>    
+            <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.IServiceFactory.GetInstance``2(``0,System.String)">
             <summary>
             Gets an instance of the given <typeparamref name="TService"/>.
             </summary>
             <typeparam name="T">The type of the parameter.</typeparam>
-            <typeparam name="TService">The type of the requested service.</typeparam>        
+            <typeparam name="TService">The type of the requested service.</typeparam>
             <param name="value">The argument value.</param>
             <param name="serviceName">The name of the requested service.</param>
-            <returns>The requested service instance.</returns>    
+            <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.IServiceFactory.GetInstance``3(``0,``1)">
             <summary>
@@ -463,10 +513,10 @@
             </summary>
             <typeparam name="T1">The type of the first parameter.</typeparam>
             <typeparam name="T2">The type of the second parameter.</typeparam>
-            <typeparam name="TService">The type of the requested service.</typeparam>        
+            <typeparam name="TService">The type of the requested service.</typeparam>
             <param name="arg1">The first argument value.</param>
             <param name="arg2">The second argument value.</param>
-            <returns>The requested service instance.</returns>    
+            <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.IServiceFactory.GetInstance``3(``0,``1,System.String)">
             <summary>
@@ -474,11 +524,11 @@
             </summary>
             <typeparam name="T1">The type of the first parameter.</typeparam>
             <typeparam name="T2">The type of the second parameter.</typeparam>
-            <typeparam name="TService">The type of the requested service.</typeparam>        
+            <typeparam name="TService">The type of the requested service.</typeparam>
             <param name="arg1">The first argument value.</param>
             <param name="arg2">The second argument value.</param>
             <param name="serviceName">The name of the requested service.</param>
-            <returns>The requested service instance.</returns>    
+            <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.IServiceFactory.GetInstance``4(``0,``1,``2)">
             <summary>
@@ -487,11 +537,11 @@
             <typeparam name="T1">The type of the first parameter.</typeparam>
             <typeparam name="T2">The type of the second parameter.</typeparam>
             <typeparam name="T3">The type of the third parameter.</typeparam>
-            <typeparam name="TService">The type of the requested service.</typeparam>        
+            <typeparam name="TService">The type of the requested service.</typeparam>
             <param name="arg1">The first argument value.</param>
             <param name="arg2">The second argument value.</param>
             <param name="arg3">The third argument value.</param>
-            <returns>The requested service instance.</returns>    
+            <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.IServiceFactory.GetInstance``4(``0,``1,``2,System.String)">
             <summary>
@@ -500,12 +550,12 @@
             <typeparam name="T1">The type of the first parameter.</typeparam>
             <typeparam name="T2">The type of the second parameter.</typeparam>
             <typeparam name="T3">The type of the third parameter.</typeparam>
-            <typeparam name="TService">The type of the requested service.</typeparam>        
+            <typeparam name="TService">The type of the requested service.</typeparam>
             <param name="arg1">The first argument value.</param>
             <param name="arg2">The second argument value.</param>
             <param name="arg3">The third argument value.</param>
             <param name="serviceName">The name of the requested service.</param>
-            <returns>The requested service instance.</returns>    
+            <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.IServiceFactory.GetInstance``5(``0,``1,``2,``3)">
             <summary>
@@ -515,12 +565,12 @@
             <typeparam name="T2">The type of the second parameter.</typeparam>
             <typeparam name="T3">The type of the third parameter.</typeparam>
             <typeparam name="T4">The type of the fourth parameter.</typeparam>
-            <typeparam name="TService">The type of the requested service.</typeparam>        
+            <typeparam name="TService">The type of the requested service.</typeparam>
             <param name="arg1">The first argument value.</param>
             <param name="arg2">The second argument value.</param>
             <param name="arg3">The third argument value.</param>
             <param name="arg4">The fourth argument value.</param>
-            <returns>The requested service instance.</returns>    
+            <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.IServiceFactory.GetInstance``5(``0,``1,``2,``3,System.String)">
             <summary>
@@ -530,13 +580,13 @@
             <typeparam name="T2">The type of the second parameter.</typeparam>
             <typeparam name="T3">The type of the third parameter.</typeparam>
             <typeparam name="T4">The type of the fourth parameter.</typeparam>
-            <typeparam name="TService">The type of the requested service.</typeparam>        
+            <typeparam name="TService">The type of the requested service.</typeparam>
             <param name="arg1">The first argument value.</param>
             <param name="arg2">The second argument value.</param>
             <param name="arg3">The third argument value.</param>
             <param name="arg4">The fourth argument value.</param>
             <param name="serviceName">The name of the requested service.</param>
-            <returns>The requested service instance.</returns>    
+            <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.IServiceFactory.TryGetInstance(System.Type)">
             <summary>
@@ -582,9 +632,30 @@
             <typeparam name="TService">The type of services to resolve.</typeparam>
             <returns>A list that contains all implementations of the <typeparamref name="TService"/> type.</returns>
         </member>
+        <member name="M:LightInject.IServiceFactory.Create``1">
+            <summary>
+            Creates an instance of a concrete class.
+            </summary>
+            <typeparam name="TService">The type of class for which to create an instance.</typeparam>
+            <returns>An instance of <typeparamref name="TService"/>.</returns>
+            <remarks>The concrete type will be registered if not already registered with the container.</remarks>
+        </member>
+        <member name="M:LightInject.IServiceFactory.Create(System.Type)">
+            <summary>
+            Creates an instance of a concrete class.
+            </summary>
+            <param name="serviceType">The type of class for which to create an instance.</param>
+            <returns>An instance of the <paramref name="serviceType"/>.</returns>
+        </member>
         <member name="T:LightInject.IServiceContainer">
             <summary>
             Represents an inversion of control container.
+            </summary>
+        </member>
+        <member name="P:LightInject.IServiceContainer.ScopeManagerProvider">
+            <summary>
+            Gets or sets the <see cref="T:LightInject.IScopeManagerProvider"/> that is responsible
+            for providing the <see cref="T:LightInject.ScopeManager"/> used to manage scopes.
             </summary>
         </member>
         <member name="M:LightInject.IServiceContainer.CanGetInstance(System.Type,System.String)">
@@ -602,11 +673,11 @@
             <param name="instance">The target instance for which to inject its property dependencies.</param>
             <returns>The <paramref name="instance"/> with its property dependencies injected.</returns>
         </member>
-        <member name="P:LightInject.IServiceContainer.ScopeManagerProvider">
+        <member name="M:LightInject.IServiceContainer.Clone">
             <summary>
-            Gets or sets the <see cref="T:LightInject.IScopeManagerProvider"/> that is responsible 
-            for providing the <see cref="T:LightInject.ScopeManager"/> used to manage scopes.
+            Creates a clone of the current <see cref="T:LightInject.IServiceContainer"/>.
             </summary>
+            <returns>A new <see cref="T:LightInject.IServiceContainer"/> instance.</returns>
         </member>
         <member name="T:LightInject.ILifetime">
             <summary>
@@ -643,6 +714,21 @@
             </summary>
             <param name="assembly">The <see cref="T:System.Reflection.Assembly"/> for which to extract types.</param>
             <returns>A set of types found in the given <paramref name="assembly"/>.</returns>
+        </member>
+        <member name="T:LightInject.ICompositionRootAttributeExtractor">
+            <summary>
+            Represents a class that is capable of extracting
+            attributes of type <see cref="T:LightInject.CompositionRootTypeAttribute"/> from an <see cref="T:System.Reflection.Assembly"/>.
+            </summary>
+        </member>
+        <member name="M:LightInject.ICompositionRootAttributeExtractor.GetAttributes(System.Reflection.Assembly)">
+            <summary>
+            Gets a list of attributes of type <see cref="T:LightInject.CompositionRootTypeAttribute"/> from
+            the given <paramref name="assembly"/>.
+            </summary>
+            <param name="assembly">The assembly from which to extract
+            <see cref="T:LightInject.CompositionRootTypeAttribute"/> attributes.</param>
+            <returns>A list of attributes of type <see cref="T:LightInject.CompositionRootTypeAttribute"/></returns>
         </member>
         <member name="T:LightInject.IPropertySelector">
             <summary>
@@ -684,7 +770,7 @@
         </member>
         <member name="T:LightInject.IConstructionInfoBuilder">
             <summary>
-            Represents a class that is capable of building a <see cref="T:System.Reflection.ConstructorInfo"/> instance 
+            Represents a class that is capable of building a <see cref="T:System.Reflection.ConstructorInfo"/> instance
             based on a <see cref="T:LightInject.Registration"/>.
             </summary>
         </member>
@@ -709,37 +795,25 @@
         </member>
         <member name="M:LightInject.IConstructionInfoProvider.Invalidate">
             <summary>
-            Invalidates the <see cref="T:LightInject.IConstructionInfoProvider"/> and causes new <see cref="T:LightInject.ConstructionInfo"/> instances 
+            Invalidates the <see cref="T:LightInject.IConstructionInfoProvider"/> and causes new <see cref="T:LightInject.ConstructionInfo"/> instances
             to be created when the <see cref="M:LightInject.IConstructionInfoProvider.GetConstructionInfo(LightInject.Registration)"/> method is called.
             </summary>
-        </member>
-        <member name="T:LightInject.ILambdaConstructionInfoBuilder">
-            <summary>
-            Represents a class that builds a <see cref="T:LightInject.ConstructionInfo"/> instance based on a <see cref="T:System.Linq.Expressions.LambdaExpression"/>.
-            </summary>
-        </member>
-        <member name="M:LightInject.ILambdaConstructionInfoBuilder.Execute(System.Linq.Expressions.LambdaExpression)">
-            <summary>
-            Parses the <paramref name="lambdaExpression"/> and returns a <see cref="T:LightInject.ConstructionInfo"/> instance.
-            </summary>
-            <param name="lambdaExpression">The <see cref="T:System.Linq.Expressions.LambdaExpression"/> to parse.</param>
-            <returns>A <see cref="T:LightInject.ConstructionInfo"/> instance.</returns>
         </member>
         <member name="T:LightInject.ITypeConstructionInfoBuilder">
             <summary>
             Represents a class that builds a <see cref="T:LightInject.ConstructionInfo"/> instance based on the implementing <see cref="T:System.Type"/>.
             </summary>
         </member>
-        <member name="M:LightInject.ITypeConstructionInfoBuilder.Execute(System.Type)">
+        <member name="M:LightInject.ITypeConstructionInfoBuilder.Execute(LightInject.Registration)">
             <summary>
-            Analyzes the <paramref name="implementingType"/> and returns a <see cref="T:LightInject.ConstructionInfo"/> instance.
+            Analyzes the <paramref name="registration"/> and returns a <see cref="T:LightInject.ConstructionInfo"/> instance.
             </summary>
-            <param name="implementingType">The <see cref="T:System.Type"/> to analyze.</param>
+            <param name="registration">The <see cref="T:LightInject.Registration"/> that represents the implementing type to analyze.</param>
             <returns>A <see cref="T:LightInject.ConstructionInfo"/> instance.</returns>
         </member>
         <member name="T:LightInject.IConstructorSelector">
             <summary>
-            Represents a class that selects the constructor to be used for creating a new service instance. 
+            Represents a class that selects the constructor to be used for creating a new service instance.
             </summary>
         </member>
         <member name="M:LightInject.IConstructorSelector.Execute(System.Type)">
@@ -750,6 +824,18 @@
             <returns>A <see cref="T:LightInject.ConstructionInfo"/> instance that represents the constructor to be used
             when creating a new instance of the <paramref name="implementingType"/>.</returns>
         </member>
+        <member name="T:LightInject.IAssemblyLoader">
+            <summary>
+            Represents a class that is responsible loading a set of assemblies based on the given search pattern.
+            </summary>
+        </member>
+        <member name="M:LightInject.IAssemblyLoader.Load(System.String)">
+            <summary>
+            Loads a set of assemblies based on the given <paramref name="searchPattern"/>.
+            </summary>
+            <param name="searchPattern">The search pattern to use.</param>
+            <returns>A list of assemblies based on the given <paramref name="searchPattern"/>.</returns>
+        </member>
         <member name="T:LightInject.IAssemblyScanner">
             <summary>
             Represents a class that is capable of scanning an assembly and register services into an <see cref="T:LightInject.IServiceContainer"/> instance.
@@ -759,7 +845,7 @@
             <summary>
             Scans the target <paramref name="assembly"/> and registers services found within the assembly.
             </summary>
-            <param name="assembly">The <see cref="T:System.Reflection.Assembly"/> to scan.</param>        
+            <param name="assembly">The <see cref="T:System.Reflection.Assembly"/> to scan.</param>
             <param name="serviceRegistry">The target <see cref="T:LightInject.IServiceRegistry"/> instance.</param>
             <param name="lifetime">The <see cref="T:LightInject.ILifetime"/> instance that controls the lifetime of the registered service.</param>
             <param name="shouldRegister">A function delegate that determines if a service implementation should be registered.</param>
@@ -768,7 +854,7 @@
             <summary>
             Scans the target <paramref name="assembly"/> and executes composition roots found within the <see cref="T:System.Reflection.Assembly"/>.
             </summary>
-            <param name="assembly">The <see cref="T:System.Reflection.Assembly"/> to scan.</param>        
+            <param name="assembly">The <see cref="T:System.Reflection.Assembly"/> to scan.</param>
             <param name="serviceRegistry">The target <see cref="T:LightInject.IServiceRegistry"/> instance.</param>
         </member>
         <member name="T:LightInject.ICompositionRootExecutor">
@@ -784,8 +870,18 @@
         </member>
         <member name="T:LightInject.IEmitter">
             <summary>
-            Represents an abstraction of the <see cref="T:LightInject.ILGenerator"/> class that provides information 
+            Represents an abstraction of the <see cref="T:System.Reflection.Emit.ILGenerator"/> class that provides information
             about the <see cref="T:System.Type"/> currently on the stack.
+            </summary>
+        </member>
+        <member name="P:LightInject.IEmitter.StackType">
+            <summary>
+            Gets the <see cref="T:System.Type"/> currently on the stack.
+            </summary>
+        </member>
+        <member name="P:LightInject.IEmitter.Instructions">
+            <summary>
+            Gets a list containing each <see cref="T:LightInject.Instruction"/> to be emitted into the dynamic method.
             </summary>
         </member>
         <member name="M:LightInject.IEmitter.Emit(System.Reflection.Emit.OpCode)">
@@ -800,13 +896,6 @@
             </summary>
             <param name="code">The MSIL instruction to be put onto the stream.</param>
             <param name="arg">The numerical argument pushed onto the stream immediately after the instruction.</param>
-        </member>
-        <member name="M:LightInject.IEmitter.Emit(System.Reflection.Emit.OpCode,System.String)">
-            <summary>
-            Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the metadata token for the given string.
-            </summary>
-            <param name="code">The MSIL instruction to be emitted onto the stream.</param>
-            <param name="arg">The String to be emitted.</param>
         </member>
         <member name="M:LightInject.IEmitter.Emit(System.Reflection.Emit.OpCode,System.SByte)">
             <summary>
@@ -836,7 +925,7 @@
             <param name="code">The MSIL instruction to be emitted onto the stream.</param>
             <param name="constructor">A <see cref="T:System.Reflection.ConstructorInfo"/> representing a constructor.</param>
         </member>
-        <member name="M:LightInject.IEmitter.Emit(System.Reflection.Emit.OpCode,LightInject.LocalBuilder)">
+        <member name="M:LightInject.IEmitter.Emit(System.Reflection.Emit.OpCode,System.Reflection.Emit.LocalBuilder)">
             <summary>
             Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the index of the given local variable.
             </summary>
@@ -857,16 +946,6 @@
             <param name="type">A <see cref="T:System.Type"/> object that represents the type of the local variable.</param>
             <returns>The declared local variable.</returns>
         </member>
-        <member name="P:LightInject.IEmitter.StackType">
-            <summary>
-            Gets the <see cref="T:System.Type"/> currently on the stack.
-            </summary>
-        </member>
-        <member name="P:LightInject.IEmitter.Instructions">
-            <summary>
-            Gets a list containing each <see cref="T:LightInject.Instruction"/> to be emitted into the dynamic method.
-            </summary>
-        </member>
         <member name="T:LightInject.IMethodSkeleton">
             <summary>
             Represents a dynamic method skeleton for emitting the code needed to resolve a service instance.
@@ -876,7 +955,7 @@
             <summary>
             Gets the <see cref="T:LightInject.IEmitter"/> for the this dynamic method.
             </summary>
-            <returns>The <see cref="T:LightInject.IEmitter"/> for this dynamic method.</returns>        
+            <returns>The <see cref="T:LightInject.IEmitter"/> for this dynamic method.</returns>
         </member>
         <member name="M:LightInject.IMethodSkeleton.CreateDelegate(System.Type)">
             <summary>
@@ -884,15 +963,6 @@
             </summary>
             <param name="delegateType">A delegate type whose signature matches that of the dynamic method.</param>
             <returns>A delegate of the specified type, which can be used to execute the dynamic method.</returns>
-        </member>
-        <member name="M:LightInject.IMethodSkeleton.CreateDelegate(System.Type,System.Object)">
-            <summary>
-            Completes the dynamic method and creates a delegate that can be used to execute it, 
-            specifying the delegate type and an object the delegate is bound to.
-            </summary>
-            <param name="delegateType">A delegate type whose signature matches that of the dynamic method, minus the first parameter.</param>
-            <param name="target">An object the delegate is bound to. Must be of the same type as the first parameter of the dynamic method.</param>
-            <returns>A delegate of the specified type, which can be used to execute the dynamic method with the specified target object.</returns>
         </member>
         <member name="T:LightInject.IScopeManagerProvider">
             <summary>
@@ -904,6 +974,68 @@
             Returns the <see cref="T:LightInject.ScopeManager"/> that is responsible for managing scopes.
             </summary>
             <returns>The <see cref="T:LightInject.ScopeManager"/> that is responsible for managing scopes.</returns>
+        </member>
+        <member name="T:LightInject.RuntimeArgumentsLoader">
+            <summary>
+            This class is not for public use and is used internally
+            to load runtime arguments onto the evaluation stack.
+            </summary>
+        </member>
+        <member name="M:LightInject.RuntimeArgumentsLoader.Load(System.Object[])">
+            <summary>
+            Loads the runtime arguments onto the evaluation stack.
+            </summary>
+            <param name="constants">A object array representing the dynamic method context.</param>
+            <returns>An array containing the runtime arguments supplied when resolving the service.</returns>
+        </member>
+        <member name="T:LightInject.Ensure">
+            <summary>
+            Contains a set of helper method related to validating
+            user input.
+            </summary>
+        </member>
+        <member name="M:LightInject.Ensure.IsNotNull``1(``0,System.String)">
+            <summary>
+            Ensures that the given <paramref name="value"/> is not null.
+            </summary>
+            <typeparam name="T">The type of value to be validated.</typeparam>
+            <param name="value">The value to be validated.</param>
+            <param name="paramName">The name of the parameter from which the <paramref name="value"/> comes from.</param>
+        </member>
+        <member name="T:LightInject.ImmutableHashTableExtensions">
+            <summary>
+            Extends the <see cref="T:LightInject.ImmutableHashTable`2"/> class.
+            </summary>
+        </member>
+        <member name="M:LightInject.ImmutableHashTableExtensions.Search``2(LightInject.ImmutableHashTable{``0,``1},``0)">
+            <summary>
+            Searches for a value using the given <paramref name="key"/>.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="hashTable">The target <see cref="T:LightInject.ImmutableHashTable`2"/> instance.</param>
+            <param name="key">The key for which to search for a value.</param>
+            <returns>If found, the <typeparamref name="TValue"/> with the given <paramref name="key"/>, otherwise the default <typeparamref name="TValue"/>.</returns>
+        </member>
+        <member name="M:LightInject.ImmutableHashTableExtensions.Search``1(LightInject.ImmutableHashTable{System.Type,``0},System.Type)">
+            <summary>
+            Searches for a value using the given <paramref name="key"/>.
+            </summary>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="hashTable">The target <see cref="T:LightInject.ImmutableHashTable`2"/> instance.</param>
+            <param name="key">The key for which to search for a value.</param>
+            <returns>If found, the <typeparamref name="TValue"/> with the given <paramref name="key"/>, otherwise the default <typeparamref name="TValue"/>.</returns>
+        </member>
+        <member name="M:LightInject.ImmutableHashTableExtensions.Add``2(LightInject.ImmutableHashTable{``0,``1},``0,``1)">
+            <summary>
+            Adds a new element to the <see cref="T:LightInject.ImmutableHashTree`2"/>.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="hashTable">The target <see cref="T:LightInject.ImmutableHashTable`2"/>.</param>
+            <param name="key">The key to be associated with the value.</param>
+            <param name="value">The value to be added to the tree.</param>
+            <returns>A new <see cref="T:LightInject.ImmutableHashTree`2"/> that contains the new key/value pair.</returns>
         </member>
         <member name="T:LightInject.ImmutableHashTreeExtensions">
             <summary>
@@ -922,7 +1054,7 @@
         </member>
         <member name="M:LightInject.ImmutableHashTreeExtensions.Add``2(LightInject.ImmutableHashTree{``0,``1},``0,``1)">
             <summary>
-            Adds a new element to the <see cref="T:LightInject.ImmutableHashTree`2"/>. 
+            Adds a new element to the <see cref="T:LightInject.ImmutableHashTree`2"/>.
             </summary>
             <typeparam name="TKey">The type of the key.</typeparam>
             <typeparam name="TValue">The type of the value.</typeparam>
@@ -931,15 +1063,24 @@
             <param name="value">The value to be added to the tree.</param>
             <returns>A new <see cref="T:LightInject.ImmutableHashTree`2"/> that contains the new key/value pair.</returns>
         </member>
+        <member name="M:LightInject.ImmutableHashTreeExtensions.InOrder``2(LightInject.ImmutableHashTree{``0,``1})">
+            <summary>
+            Returns the nodes in the tree using in order traversal.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="hashTree">The target <see cref="T:LightInject.ImmutableHashTree`2"/>.</param>
+            <returns>The nodes using in order traversal.</returns>
+        </member>
         <member name="T:LightInject.EmitterExtensions">
             <summary>
-            Extends the <see cref="T:LightInject.IEmitter"/> interface with a set of methods 
+            Extends the <see cref="T:LightInject.IEmitter"/> interface with a set of methods
             that optimizes and simplifies emitting MSIL instructions.
             </summary>
         </member>
         <member name="M:LightInject.EmitterExtensions.UnboxOrCast(LightInject.IEmitter,System.Type)">
             <summary>
-            Performs a cast or unbox operation if the current <see cref="P:LightInject.IEmitter.StackType"/> is 
+            Performs a cast or unbox operation if the current <see cref="P:LightInject.IEmitter.StackType"/> is
             different from the given <paramref name="type"/>.
             </summary>
             <param name="emitter">The target <see cref="T:LightInject.IEmitter"/>.</param>
@@ -973,7 +1114,7 @@
             that is passed into the dynamic method.
             </summary>
             <param name="emitter">The target <see cref="T:LightInject.IEmitter"/>.</param>
-            <param name="parameters">A list of <see cref="T:System.Reflection.ParameterInfo"/> instances that 
+            <param name="parameters">A list of <see cref="T:System.Reflection.ParameterInfo"/> instances that
             represent the arguments to be pushed onto the stack.</param>
         </member>
         <member name="M:LightInject.EmitterExtensions.Call(LightInject.IEmitter,System.Reflection.MethodInfo)">
@@ -990,12 +1131,12 @@
             <param name="emitter">The target <see cref="T:LightInject.IEmitter"/>.</param>
             <param name="constructorInfo">The <see cref="T:LightInject.ConstructionInfo"/> that represent the object to be created.</param>
         </member>
-        <member name="M:LightInject.EmitterExtensions.Push(LightInject.IEmitter,LightInject.LocalBuilder)">
+        <member name="M:LightInject.EmitterExtensions.Push(LightInject.IEmitter,System.Reflection.Emit.LocalBuilder)">
             <summary>
             Pushes the given <paramref name="localBuilder"/> onto the stack.
             </summary>
             <param name="emitter">The target <see cref="T:LightInject.IEmitter"/>.</param>
-            <param name="localBuilder">The <see cref="T:LightInject.LocalBuilder"/> to be pushed onto the stack.</param>
+            <param name="localBuilder">The <see cref="T:System.Reflection.Emit.LocalBuilder"/> to be pushed onto the stack.</param>
         </member>
         <member name="M:LightInject.EmitterExtensions.PushArgument(LightInject.IEmitter,System.Int32)">
             <summary>
@@ -1004,19 +1145,12 @@
             <param name="emitter">The target <see cref="T:LightInject.IEmitter"/>.</param>
             <param name="index">The index of the argument to be pushed onto the stack.</param>
         </member>
-        <member name="M:LightInject.EmitterExtensions.Store(LightInject.IEmitter,LightInject.LocalBuilder)">
+        <member name="M:LightInject.EmitterExtensions.Store(LightInject.IEmitter,System.Reflection.Emit.LocalBuilder)">
             <summary>
             Stores the value currently on top of the stack in the given <paramref name="localBuilder"/>.
             </summary>
             <param name="emitter">The target <see cref="T:LightInject.IEmitter"/>.</param>
-            <param name="localBuilder">The <see cref="T:LightInject.LocalBuilder"/> for which the value is to be stored.</param>
-        </member>
-        <member name="M:LightInject.EmitterExtensions.Push(LightInject.IEmitter,System.String)">
-            <summary>
-            Pushes a string value onto the stack.
-            </summary>
-            <param name="emitter">The target <see cref="T:LightInject.IEmitter"/>.</param>
-            <param name="value">The <see cref="T:System.String"/> value to be pushed onto the stack.</param>
+            <param name="localBuilder">The <see cref="T:System.Reflection.Emit.LocalBuilder"/> for which the value is to be stored.</param>
         </member>
         <member name="M:LightInject.EmitterExtensions.PushNewArray(LightInject.IEmitter,System.Type)">
             <summary>
@@ -1045,6 +1179,24 @@
             </summary>
             <param name="emitter">The target <see cref="T:LightInject.IEmitter"/>.</param>
         </member>
+        <member name="T:LightInject.ContainerOptions">
+            <summary>
+            Represents a set of configurable options when creating a new instance of the container.
+            </summary>
+        </member>
+        <member name="P:LightInject.ContainerOptions.Default">
+            <summary>
+            Gets the default <see cref="T:LightInject.ContainerOptions"/> used across all <see cref="T:LightInject.ServiceContainer"/> instances.
+            </summary>
+        </member>
+        <member name="P:LightInject.ContainerOptions.EnableVariance">
+            <summary>
+            Gets or sets a value indicating whether variance is applied when resolving an <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+            <remarks>
+            The default value is true.
+            </remarks>
+        </member>
         <member name="T:LightInject.ServiceContainer">
             <summary>
             An ultra lightweight service container.
@@ -1053,6 +1205,63 @@
         <member name="M:LightInject.ServiceContainer.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:LightInject.ServiceContainer"/> class.
+            </summary>
+        </member>
+        <member name="M:LightInject.ServiceContainer.#ctor(LightInject.ContainerOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LightInject.ServiceContainer"/> class.
+            </summary>
+            <param name="options">The <see cref="T:LightInject.ContainerOptions"/> instances that represents the configurable options.</param>
+        </member>
+        <member name="P:LightInject.ServiceContainer.ScopeManagerProvider">
+            <summary>
+            Gets or sets the <see cref="T:LightInject.IScopeManagerProvider"/> that is responsible
+            for providing the <see cref="T:LightInject.ScopeManager"/> used to manage scopes.
+            </summary>
+        </member>
+        <member name="P:LightInject.ServiceContainer.PropertyDependencySelector">
+            <summary>
+            Gets or sets the <see cref="T:LightInject.IPropertyDependencySelector"/> instance that
+            is responsible for selecting the property dependencies for a given type.
+            </summary>
+        </member>
+        <member name="P:LightInject.ServiceContainer.CompositionRootTypeExtractor">
+            <summary>
+            Gets or sets the <see cref="T:LightInject.ITypeExtractor"/> that is responsible
+            for extracting composition roots types from an assembly.
+            </summary>
+        </member>
+        <member name="P:LightInject.ServiceContainer.CompositionRootExecutor">
+            <summary>
+            Gets or sets the <see cref="T:LightInject.ICompositionRootExecutor"/> that is responsible
+            for executing composition roots.
+            </summary>
+        </member>
+        <member name="P:LightInject.ServiceContainer.ConstructorDependencySelector">
+            <summary>
+            Gets or sets the <see cref="T:LightInject.IConstructorDependencySelector"/> instance that
+            is responsible for selecting the constructor dependencies for a given constructor.
+            </summary>
+        </member>
+        <member name="P:LightInject.ServiceContainer.ConstructorSelector">
+            <summary>
+            Gets or sets the <see cref="T:LightInject.IConstructorSelector"/> instance that is responsible
+            for selecting the constructor to be used when creating new service instances.
+            </summary>
+        </member>
+        <member name="P:LightInject.ServiceContainer.AssemblyScanner">
+            <summary>
+            Gets or sets the <see cref="T:LightInject.IAssemblyScanner"/> instance that is responsible for scanning assemblies.
+            </summary>
+        </member>
+        <member name="P:LightInject.ServiceContainer.AssemblyLoader">
+            <summary>
+            Gets or sets the <see cref="T:LightInject.IAssemblyLoader"/> instance that is responsible for loading assemblies during assembly scanning.
+            </summary>
+        </member>
+        <member name="P:LightInject.ServiceContainer.AvailableServices">
+            <summary>
+            Gets a list of <see cref="T:LightInject.ServiceRegistration"/> instances that represents the registered services.
             </summary>
         </member>
         <member name="M:LightInject.ServiceContainer.CanGetInstance(System.Type,System.String)">
@@ -1081,14 +1290,14 @@
             <param name="instance">The target instance for which to inject its property dependencies.</param>
             <returns>The <paramref name="instance"/> with its property dependencies injected.</returns>
         </member>
-        <member name="M:LightInject.ServiceContainer.Register``1(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0}},System.String,LightInject.ILifetime)">
+        <member name="M:LightInject.ServiceContainer.Register``1(System.Func{LightInject.IServiceFactory,``0},System.String,LightInject.ILifetime)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="expression"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="TService">The service type to register.</typeparam>
-            <param name="expression">The lambdaExpression that describes the dependencies of the service.</param>
-            <param name="serviceName">The name of the service.</param>        
+            <param name="factory">The lambdaExpression that describes the dependencies of the service.</param>
+            <param name="serviceName">The name of the service.</param>
             <param name="lifetime">The <see cref="T:LightInject.ILifetime"/> instance that controls the lifetime of the registered service.</param>
         </member>
         <member name="M:LightInject.ServiceContainer.RegisterFallback(System.Func{System.Type,System.String,System.Boolean},System.Func{LightInject.ServiceRequest,System.Object})">
@@ -1114,13 +1323,13 @@
         </member>
         <member name="M:LightInject.ServiceContainer.RegisterAssembly(System.Reflection.Assembly)">
             <summary>
-            Registers services from the given <paramref name="assembly"/>.
+            Registers composition roots from the given <paramref name="assembly"/>.
             </summary>
-            <param name="assembly">The assembly to be scanned for services.</param>        
+            <param name="assembly">The assembly to be scanned for services.</param>
             <remarks>
-            If the target <paramref name="assembly"/> contains an implementation of the <see cref="T:LightInject.ICompositionRoot"/> interface, this 
+            If the target <paramref name="assembly"/> contains an implementation of the <see cref="T:LightInject.ICompositionRoot"/> interface, this
             will be used to configure the container.
-            </remarks>             
+            </remarks>
         </member>
         <member name="M:LightInject.ServiceContainer.RegisterAssembly(System.Reflection.Assembly,System.Func{System.Type,System.Type,System.Boolean})">
             <summary>
@@ -1129,9 +1338,9 @@
             <param name="assembly">The assembly to be scanned for services.</param>
             <param name="shouldRegister">A function delegate that determines if a service implementation should be registered.</param>
             <remarks>
-            If the target <paramref name="assembly"/> contains an implementation of the <see cref="T:LightInject.ICompositionRoot"/> interface, this 
+            If the target <paramref name="assembly"/> contains an implementation of the <see cref="T:LightInject.ICompositionRoot"/> interface, this
             will be used to configure the container.
-            </remarks>     
+            </remarks>
         </member>
         <member name="M:LightInject.ServiceContainer.RegisterAssembly(System.Reflection.Assembly,System.Func{LightInject.ILifetime})">
             <summary>
@@ -1140,9 +1349,9 @@
             <param name="assembly">The assembly to be scanned for services.</param>
             <param name="lifetimeFactory">The <see cref="T:LightInject.ILifetime"/> factory that controls the lifetime of the registered service.</param>
             <remarks>
-            If the target <paramref name="assembly"/> contains an implementation of the <see cref="T:LightInject.ICompositionRoot"/> interface, this 
+            If the target <paramref name="assembly"/> contains an implementation of the <see cref="T:LightInject.ICompositionRoot"/> interface, this
             will be used to configure the container.
-            </remarks>     
+            </remarks>
         </member>
         <member name="M:LightInject.ServiceContainer.RegisterAssembly(System.Reflection.Assembly,System.Func{LightInject.ILifetime},System.Func{System.Type,System.Type,System.Boolean})">
             <summary>
@@ -1152,15 +1361,45 @@
             <param name="lifetimeFactory">The <see cref="T:LightInject.ILifetime"/> factory that controls the lifetime of the registered service.</param>
             <param name="shouldRegister">A function delegate that determines if a service implementation should be registered.</param>
             <remarks>
-            If the target <paramref name="assembly"/> contains an implementation of the <see cref="T:LightInject.ICompositionRoot"/> interface, this 
+            If the target <paramref name="assembly"/> contains an implementation of the <see cref="T:LightInject.ICompositionRoot"/> interface, this
             will be used to configure the container.
-            </remarks>     
+            </remarks>
         </member>
         <member name="M:LightInject.ServiceContainer.RegisterFrom``1">
             <summary>
             Registers services from the given <typeparamref name="TCompositionRoot"/> type.
             </summary>
             <typeparam name="TCompositionRoot">The type of <see cref="T:LightInject.ICompositionRoot"/> to register from.</typeparam>
+        </member>
+        <member name="M:LightInject.ServiceContainer.RegisterConstructorDependency``1(System.Func{LightInject.IServiceFactory,System.Reflection.ParameterInfo,``0})">
+            <summary>
+            Registers a factory delegate to be used when resolving a constructor dependency for
+            a implicitly registered service.
+            </summary>
+            <typeparam name="TDependency">The dependency type.</typeparam>
+            <param name="factory">The factory delegate used to create an instance of the dependency.</param>
+        </member>
+        <member name="M:LightInject.ServiceContainer.RegisterConstructorDependency``1(System.Func{LightInject.IServiceFactory,System.Reflection.ParameterInfo,System.Object[],``0})">
+            <summary>
+            Registers a factory delegate to be used when resolving a constructor dependency for
+            a implicitly registered service.
+            </summary>
+            <typeparam name="TDependency">The dependency type.</typeparam>
+            <param name="factory">The factory delegate used to create an instance of the dependency.</param>
+        </member>
+        <member name="M:LightInject.ServiceContainer.RegisterPropertyDependency``1(System.Func{LightInject.IServiceFactory,System.Reflection.PropertyInfo,``0})">
+            <summary>
+            Registers a factory delegate to be used when resolving a constructor dependency for
+            a implicitly registered service.
+            </summary>
+            <typeparam name="TDependency">The dependency type.</typeparam>
+            <param name="factory">The factory delegate used to create an instance of the dependency.</param>
+        </member>
+        <member name="M:LightInject.ServiceContainer.RegisterAssembly(System.String)">
+            <summary>
+            Registers composition roots from assemblies in the base directory that matches the <paramref name="searchPattern"/>.
+            </summary>
+            <param name="searchPattern">The search pattern used to filter the assembly files.</param>
         </member>
         <member name="M:LightInject.ServiceContainer.Decorate(System.Type,System.Type,System.Func{LightInject.ServiceRegistration,System.Boolean})">
             <summary>
@@ -1176,7 +1415,7 @@
             Decorates the <paramref name="serviceType"/> with the given <paramref name="decoratorType"/>.
             </summary>
             <param name="serviceType">The target service type.</param>
-            <param name="decoratorType">The decorator type used to decorate the <paramref name="serviceType"/>.</param>        
+            <param name="decoratorType">The decorator type used to decorate the <paramref name="serviceType"/>.</param>
         </member>
         <member name="M:LightInject.ServiceContainer.Decorate``2">
             <summary>
@@ -1185,7 +1424,7 @@
             <typeparam name="TService">The target service type.</typeparam>
             <typeparam name="TDecorator">The decorator type used to decorate the <typeparamref name="TService"/>.</typeparam>
         </member>
-        <member name="M:LightInject.ServiceContainer.Decorate``1(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0,``0}})">
+        <member name="M:LightInject.ServiceContainer.Decorate``1(System.Func{LightInject.IServiceFactory,``0,``0})">
             <summary>
             Decorates the <typeparamref name="TService"/> using the given decorator <paramref name="factory"/>.
             </summary>
@@ -1206,6 +1445,13 @@
             overridden using the <see cref="T:LightInject.ServiceRegistration"/> returned from the <paramref name="serviceRegistrationFactory"/>.</param>
             <param name="serviceRegistrationFactory">The factory delegate used to create a <see cref="T:LightInject.ServiceRegistration"/> that overrides
             the incoming <see cref="T:LightInject.ServiceRegistration"/>.</param>
+        </member>
+        <member name="M:LightInject.ServiceContainer.Initialize(System.Func{LightInject.ServiceRegistration,System.Boolean},System.Action{LightInject.IServiceFactory,System.Object})">
+            <summary>
+            Allows post-processing of a service instance.
+            </summary>
+            <param name="predicate">A function delegate that determines if the given service can be post-processed.</param>
+            <param name="processor">An action delegate that exposes the created service instance.</param>
         </member>
         <member name="M:LightInject.ServiceContainer.Register(System.Type,System.Type,LightInject.ILifetime)">
             <summary>
@@ -1256,23 +1502,23 @@
             <param name="serviceName">The name of the service.</param>
             <param name="lifetime">The <see cref="T:LightInject.ILifetime"/> instance that controls the lifetime of the registered service.</param>
         </member>
-        <member name="M:LightInject.ServiceContainer.Register``1(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0}},LightInject.ILifetime)">
+        <member name="M:LightInject.ServiceContainer.Register``1(System.Func{LightInject.IServiceFactory,``0},LightInject.ILifetime)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="TService">The service type to register.</typeparam>
             <param name="factory">The lambdaExpression that describes the dependencies of the service.</param>
             <param name="lifetime">The <see cref="T:LightInject.ILifetime"/> instance that controls the lifetime of the registered service.</param>
         </member>
-        <member name="M:LightInject.ServiceContainer.Register``1(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0}},System.String)">
+        <member name="M:LightInject.ServiceContainer.Register``1(System.Func{LightInject.IServiceFactory,``0},System.String)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="TService">The service type to register.</typeparam>
             <param name="factory">The lambdaExpression that describes the dependencies of the service.</param>
-            <param name="serviceName">The name of the service.</param>        
+            <param name="serviceName">The name of the service.</param>
         </member>
         <member name="M:LightInject.ServiceContainer.Register``1">
             <summary>
@@ -1302,7 +1548,7 @@
         </member>
         <member name="M:LightInject.ServiceContainer.RegisterInstance``1(``0,System.String)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the given <paramref name="instance"/>. 
+            Registers the <typeparamref name="TService"/> with the given <paramref name="instance"/>.
             </summary>
             <typeparam name="TService">The service type to register.</typeparam>
             <param name="instance">The instance returned when this service is requested.</param>
@@ -1310,120 +1556,120 @@
         </member>
         <member name="M:LightInject.ServiceContainer.RegisterInstance``1(``0)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the given <paramref name="instance"/>. 
+            Registers the <typeparamref name="TService"/> with the given <paramref name="instance"/>.
             </summary>
             <typeparam name="TService">The service type to register.</typeparam>
             <param name="instance">The instance returned when this service is requested.</param>
         </member>
         <member name="M:LightInject.ServiceContainer.RegisterInstance(System.Type,System.Object)">
             <summary>
-            Registers the <paramref name="serviceType"/> with the given <paramref name="instance"/>. 
+            Registers the <paramref name="serviceType"/> with the given <paramref name="instance"/>.
             </summary>
             <param name="serviceType">The service type to register.</param>
             <param name="instance">The instance returned when this service is requested.</param>
         </member>
         <member name="M:LightInject.ServiceContainer.RegisterInstance(System.Type,System.Object,System.String)">
             <summary>
-            Registers the <paramref name="serviceType"/> with the given <paramref name="instance"/>. 
+            Registers the <paramref name="serviceType"/> with the given <paramref name="instance"/>.
             </summary>
             <param name="serviceType">The service type to register.</param>
             <param name="instance">The instance returned when this service is requested.</param>
             <param name="serviceName">The name of the service.</param>
         </member>
-        <member name="M:LightInject.ServiceContainer.Register``1(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0}})">
+        <member name="M:LightInject.ServiceContainer.Register``1(System.Func{LightInject.IServiceFactory,``0})">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="TService">The service type to register.</typeparam>
-            <param name="factory">The lambdaExpression that describes the dependencies of the service.</param>       
+            <param name="factory">The lambdaExpression that describes the dependencies of the service.</param>
         </member>
-        <member name="M:LightInject.ServiceContainer.Register``2(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0,``1}})">
+        <member name="M:LightInject.ServiceContainer.Register``2(System.Func{LightInject.IServiceFactory,``0,``1})">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="T">The parameter type.</typeparam>
-            <typeparam name="TService">The service type to register.</typeparam>        
-            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>    
+            <typeparam name="TService">The service type to register.</typeparam>
+            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>
         </member>
-        <member name="M:LightInject.ServiceContainer.Register``2(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0,``1}},System.String)">
+        <member name="M:LightInject.ServiceContainer.Register``2(System.Func{LightInject.IServiceFactory,``0,``1},System.String)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="T">The parameter type.</typeparam>
-            <typeparam name="TService">The service type to register.</typeparam>        
-            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param> 
-            <param name="serviceName">The name of the service.</param>        
-        </member>
-        <member name="M:LightInject.ServiceContainer.Register``3(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0,``1,``2}})">
-            <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
-            </summary>
-            <typeparam name="T1">The type of the first parameter.</typeparam>
-            <typeparam name="T2">The type of the second parameter.</typeparam>
-            <typeparam name="TService">The service type to register.</typeparam>        
-            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>    
-        </member>
-        <member name="M:LightInject.ServiceContainer.Register``3(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0,``1,``2}},System.String)">
-            <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
-            </summary>
-            <typeparam name="T1">The type of the first parameter.</typeparam>
-            <typeparam name="T2">The type of the second parameter.</typeparam>
-            <typeparam name="TService">The service type to register.</typeparam>        
-            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>    
+            <typeparam name="TService">The service type to register.</typeparam>
+            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>
             <param name="serviceName">The name of the service.</param>
         </member>
-        <member name="M:LightInject.ServiceContainer.Register``4(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0,``1,``2,``3}})">
+        <member name="M:LightInject.ServiceContainer.Register``3(System.Func{LightInject.IServiceFactory,``0,``1,``2})">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
+            </summary>
+            <typeparam name="T1">The type of the first parameter.</typeparam>
+            <typeparam name="T2">The type of the second parameter.</typeparam>
+            <typeparam name="TService">The service type to register.</typeparam>
+            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>
+        </member>
+        <member name="M:LightInject.ServiceContainer.Register``3(System.Func{LightInject.IServiceFactory,``0,``1,``2},System.String)">
+            <summary>
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
+            </summary>
+            <typeparam name="T1">The type of the first parameter.</typeparam>
+            <typeparam name="T2">The type of the second parameter.</typeparam>
+            <typeparam name="TService">The service type to register.</typeparam>
+            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>
+            <param name="serviceName">The name of the service.</param>
+        </member>
+        <member name="M:LightInject.ServiceContainer.Register``4(System.Func{LightInject.IServiceFactory,``0,``1,``2,``3})">
+            <summary>
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="T1">The type of the first parameter.</typeparam>
             <typeparam name="T2">The type of the second parameter.</typeparam>
             <typeparam name="T3">The type of the third parameter.</typeparam>
-            <typeparam name="TService">The service type to register.</typeparam>        
-            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>    
+            <typeparam name="TService">The service type to register.</typeparam>
+            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>
         </member>
-        <member name="M:LightInject.ServiceContainer.Register``4(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0,``1,``2,``3}},System.String)">
+        <member name="M:LightInject.ServiceContainer.Register``4(System.Func{LightInject.IServiceFactory,``0,``1,``2,``3},System.String)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="T1">The type of the first parameter.</typeparam>
             <typeparam name="T2">The type of the second parameter.</typeparam>
             <typeparam name="T3">The type of the third parameter.</typeparam>
-            <typeparam name="TService">The service type to register.</typeparam>        
-            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>    
+            <typeparam name="TService">The service type to register.</typeparam>
+            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>
             <param name="serviceName">The name of the service.</param>
         </member>
-        <member name="M:LightInject.ServiceContainer.Register``5(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0,``1,``2,``3,``4}})">
+        <member name="M:LightInject.ServiceContainer.Register``5(System.Func{LightInject.IServiceFactory,``0,``1,``2,``3,``4})">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="T1">The type of the first parameter.</typeparam>
             <typeparam name="T2">The type of the second parameter.</typeparam>
             <typeparam name="T3">The type of the third parameter.</typeparam>
             <typeparam name="T4">The type of the fourth parameter.</typeparam>
-            <typeparam name="TService">The service type to register.</typeparam>        
-            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>    
+            <typeparam name="TService">The service type to register.</typeparam>
+            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>
         </member>
-        <member name="M:LightInject.ServiceContainer.Register``5(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0,``1,``2,``3,``4}},System.String)">
+        <member name="M:LightInject.ServiceContainer.Register``5(System.Func{LightInject.IServiceFactory,``0,``1,``2,``3,``4},System.String)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
-            describes the dependencies of the service. 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that
+            describes the dependencies of the service.
             </summary>
             <typeparam name="T1">The type of the first parameter.</typeparam>
             <typeparam name="T2">The type of the second parameter.</typeparam>
             <typeparam name="T3">The type of the third parameter.</typeparam>
             <typeparam name="T4">The type of the fourth parameter.</typeparam>
-            <typeparam name="TService">The service type to register.</typeparam>        
-            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>    
+            <typeparam name="TService">The service type to register.</typeparam>
+            <param name="factory">A factory delegate used to create the <typeparamref name="TService"/> instance.</param>
             <param name="serviceName">The name of the service.</param>
         </member>
         <member name="M:LightInject.ServiceContainer.Register(System.Type,System.Type,System.String)">
@@ -1462,7 +1708,7 @@
             </summary>
             <param name="serviceType">The type of the requested service.</param>
             <param name="serviceName">The name of the requested service.</param>
-            <param name="arguments">The arguments to be passed to the target instance.</param>        
+            <param name="arguments">The arguments to be passed to the target instance.</param>
             <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.ServiceContainer.GetInstance``1">
@@ -1478,26 +1724,26 @@
             </summary>
             <typeparam name="TService">The type of the requested service.</typeparam>
             <param name="serviceName">The name of the requested service.</param>
-            <returns>The requested service instance.</returns>    
+            <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.ServiceContainer.GetInstance``2(``0)">
             <summary>
             Gets an instance of the given <typeparamref name="TService"/>.
             </summary>
             <typeparam name="T">The type of the argument.</typeparam>
-            <typeparam name="TService">The type of the requested service.</typeparam>        
+            <typeparam name="TService">The type of the requested service.</typeparam>
             <param name="value">The argument value.</param>
-            <returns>The requested service instance.</returns>    
+            <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.ServiceContainer.GetInstance``2(``0,System.String)">
             <summary>
             Gets an instance of the given <typeparamref name="TService"/>.
             </summary>
             <typeparam name="T">The type of the parameter.</typeparam>
-            <typeparam name="TService">The type of the requested service.</typeparam>        
+            <typeparam name="TService">The type of the requested service.</typeparam>
             <param name="value">The argument value.</param>
             <param name="serviceName">The name of the requested service.</param>
-            <returns>The requested service instance.</returns>    
+            <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.ServiceContainer.GetInstance``3(``0,``1)">
             <summary>
@@ -1505,10 +1751,10 @@
             </summary>
             <typeparam name="T1">The type of the first parameter.</typeparam>
             <typeparam name="T2">The type of the second parameter.</typeparam>
-            <typeparam name="TService">The type of the requested service.</typeparam>        
+            <typeparam name="TService">The type of the requested service.</typeparam>
             <param name="arg1">The first argument value.</param>
             <param name="arg2">The second argument value.</param>
-            <returns>The requested service instance.</returns>    
+            <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.ServiceContainer.GetInstance``3(``0,``1,System.String)">
             <summary>
@@ -1516,11 +1762,11 @@
             </summary>
             <typeparam name="T1">The type of the first parameter.</typeparam>
             <typeparam name="T2">The type of the second parameter.</typeparam>
-            <typeparam name="TService">The type of the requested service.</typeparam>        
+            <typeparam name="TService">The type of the requested service.</typeparam>
             <param name="arg1">The first argument value.</param>
             <param name="arg2">The second argument value.</param>
             <param name="serviceName">The name of the requested service.</param>
-            <returns>The requested service instance.</returns>    
+            <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.ServiceContainer.GetInstance``4(``0,``1,``2)">
             <summary>
@@ -1529,11 +1775,11 @@
             <typeparam name="T1">The type of the first parameter.</typeparam>
             <typeparam name="T2">The type of the second parameter.</typeparam>
             <typeparam name="T3">The type of the third parameter.</typeparam>
-            <typeparam name="TService">The type of the requested service.</typeparam>        
+            <typeparam name="TService">The type of the requested service.</typeparam>
             <param name="arg1">The first argument value.</param>
             <param name="arg2">The second argument value.</param>
             <param name="arg3">The third argument value.</param>
-            <returns>The requested service instance.</returns>    
+            <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.ServiceContainer.GetInstance``4(``0,``1,``2,System.String)">
             <summary>
@@ -1542,12 +1788,12 @@
             <typeparam name="T1">The type of the first parameter.</typeparam>
             <typeparam name="T2">The type of the second parameter.</typeparam>
             <typeparam name="T3">The type of the third parameter.</typeparam>
-            <typeparam name="TService">The type of the requested service.</typeparam>        
+            <typeparam name="TService">The type of the requested service.</typeparam>
             <param name="arg1">The first argument value.</param>
             <param name="arg2">The second argument value.</param>
             <param name="arg3">The third argument value.</param>
             <param name="serviceName">The name of the requested service.</param>
-            <returns>The requested service instance.</returns>    
+            <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.ServiceContainer.GetInstance``5(``0,``1,``2,``3)">
             <summary>
@@ -1557,12 +1803,12 @@
             <typeparam name="T2">The type of the second parameter.</typeparam>
             <typeparam name="T3">The type of the third parameter.</typeparam>
             <typeparam name="T4">The type of the fourth parameter.</typeparam>
-            <typeparam name="TService">The type of the requested service.</typeparam>        
+            <typeparam name="TService">The type of the requested service.</typeparam>
             <param name="arg1">The first argument value.</param>
             <param name="arg2">The second argument value.</param>
             <param name="arg3">The third argument value.</param>
             <param name="arg4">The fourth argument value.</param>
-            <returns>The requested service instance.</returns>    
+            <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.ServiceContainer.GetInstance``5(``0,``1,``2,``3,System.String)">
             <summary>
@@ -1572,13 +1818,13 @@
             <typeparam name="T2">The type of the second parameter.</typeparam>
             <typeparam name="T3">The type of the third parameter.</typeparam>
             <typeparam name="T4">The type of the fourth parameter.</typeparam>
-            <typeparam name="TService">The type of the requested service.</typeparam>        
+            <typeparam name="TService">The type of the requested service.</typeparam>
             <param name="arg1">The first argument value.</param>
             <param name="arg2">The second argument value.</param>
             <param name="arg3">The third argument value.</param>
             <param name="arg4">The fourth argument value.</param>
             <param name="serviceName">The name of the requested service.</param>
-            <returns>The requested service instance.</returns>    
+            <returns>The requested service instance.</returns>
         </member>
         <member name="M:LightInject.ServiceContainer.TryGetInstance(System.Type)">
             <summary>
@@ -1632,144 +1878,42 @@
             <typeparam name="TService">The type of services to resolve.</typeparam>
             <returns>A list that contains all implementations of the <typeparamref name="TService"/> type.</returns>
         </member>
+        <member name="M:LightInject.ServiceContainer.Create``1">
+            <summary>
+            Creates an instance of a concrete class.
+            </summary>
+            <typeparam name="TService">The type of class for which to create an instance.</typeparam>
+            <returns>An instance of <typeparamref name="TService"/>.</returns>
+            <remarks>The concrete type will be registered if not already registered with the container.</remarks>
+        </member>
+        <member name="M:LightInject.ServiceContainer.Create(System.Type)">
+            <summary>
+            Creates an instance of a concrete class.
+            </summary>
+            <param name="serviceType">The type of class for which to create an instance.</param>
+            <returns>An instance of the <paramref name="serviceType"/>.</returns>
+        </member>
+        <member name="M:LightInject.ServiceContainer.SetDefaultLifetime``1">
+            <summary>
+            Sets the default lifetime for types registered without an explicit lifetime. Will only affect new registrations (after this call).
+            </summary>
+            <typeparam name="T">The default lifetime type</typeparam>
+        </member>
         <member name="M:LightInject.ServiceContainer.Dispose">
             <summary>
             Disposes any services registered using the <see cref="T:LightInject.PerContainerLifetime"/>.
             </summary>
         </member>
-        <member name="P:LightInject.ServiceContainer.ScopeManagerProvider">
+        <member name="M:LightInject.ServiceContainer.Clone">
             <summary>
-            Gets or sets the <see cref="T:LightInject.IScopeManagerProvider"/> that is responsible 
-            for providing the <see cref="T:LightInject.ScopeManager"/> used to manage scopes.
+            Creates a clone of the current <see cref="T:LightInject.IServiceContainer"/>.
             </summary>
+            <returns>A new <see cref="T:LightInject.IServiceContainer"/> instance.</returns>
         </member>
-        <member name="P:LightInject.ServiceContainer.PropertyDependencySelector">
+        <member name="M:LightInject.ServiceContainer.Invalidate">
             <summary>
-            Gets or sets the <see cref="T:LightInject.IPropertyDependencySelector"/> instance that 
-            is responsible for selecting the property dependencies for a given type.
+            Invalidates the container and causes the compiler to "recompile".
             </summary>
-        </member>
-        <member name="P:LightInject.ServiceContainer.ConstructorDependencySelector">
-            <summary>
-            Gets or sets the <see cref="T:LightInject.IConstructorDependencySelector"/> instance that 
-            is responsible for selecting the constructor dependencies for a given constructor.
-            </summary>
-        </member>
-        <member name="P:LightInject.ServiceContainer.ConstructorSelector">
-            <summary>
-            Gets or sets the <see cref="T:LightInject.IConstructorSelector"/> instance that is responsible 
-            for selecting the constructor to be used when creating new service instances.
-            </summary>
-        </member>
-        <member name="P:LightInject.ServiceContainer.AssemblyScanner">
-            <summary>
-            Gets or sets the <see cref="T:LightInject.IAssemblyScanner"/> instance that is responsible for scanning assemblies.
-            </summary>
-        </member>
-        <member name="P:LightInject.ServiceContainer.AvailableServices">
-            <summary>
-            Gets a list of <see cref="T:LightInject.ServiceRegistration"/> instances that represents the registered services.           
-            </summary>                  
-        </member>
-        <member name="T:LightInject.ThreadSafeDictionary`2">
-            <summary>
-            A thread safe dictionary.
-            </summary>
-            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
-            <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
-        </member>
-        <member name="M:LightInject.ThreadSafeDictionary`2.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:LightInject.ThreadSafeDictionary`2"/> class. 
-            </summary>
-        </member>
-        <member name="M:LightInject.ThreadSafeDictionary`2.#ctor(System.Collections.Generic.IEqualityComparer{`0})">
-            <summary>
-            Initializes a new instance of the <see cref="T:LightInject.ThreadSafeDictionary`2"/> class using the 
-            given <see cref="T:System.Collections.Generic.IEqualityComparer`1"/>.
-            </summary>
-            <param name="comparer">The <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> implementation to use when comparing keys</param>
-        </member>
-        <member name="M:LightInject.ThreadSafeDictionary`2.GetOrAdd(`0,System.Func{`0,`1})">
-            <summary>
-            Adds a key/value pair to the <see cref="T:LightInject.ThreadSafeDictionary`2"/> by using the specified function, if the key does not already exist.
-            </summary>
-            <param name="key">The key of the element to add.</param>
-            <param name="valuefactory">The function used to generate a value for the key</param>
-            <returns>The value for the key.</returns>
-        </member>
-        <member name="M:LightInject.ThreadSafeDictionary`2.AddOrUpdate(`0,System.Func{`0,`1},System.Func{`0,`1,`1})">
-            <summary>
-            Uses the specified functions to add a key/value pair to the <see cref="T:LightInject.ThreadSafeDictionary`2"/> if the key does not already exist, 
-            or to update a key/value pair in the <see cref="T:LightInject.ThreadSafeDictionary`2"/> if the key already exists.
-            </summary>
-            <param name="key">The key to be added or whose value should be updated</param>
-            <param name="addValueFactory">The function used to generate a value for an absent key</param>
-            <param name="updateValueFactory">The function used to generate a new value for an existing key based on the key's existing value</param>
-        </member>
-        <member name="M:LightInject.ThreadSafeDictionary`2.TryGetValue(`0,`1@)">
-            <summary>
-            Attempts to get the value associated with the specified key from the <see cref="T:LightInject.ThreadSafeDictionary`2"/>.
-            </summary>
-            <param name="key">The key of the value to get.</param>
-            <param name="value">When this method returns, contains the object from the <see cref="T:LightInject.ThreadSafeDictionary`2"/> that has the specified key, 
-            or the default value of <typeparamref name="TValue"/>, if the operation failed.</param>
-        </member>
-        <member name="M:LightInject.ThreadSafeDictionary`2.TryRemove(`0,`1@)">
-            <summary>
-            Attempts to remove and return the value that has the specified key from the <see cref="T:LightInject.ThreadSafeDictionary`2"/>.
-            </summary>
-            <param name="key">The key of the element to remove and return.</param>
-            <param name="value">When this method returns, contains the object removed from the <see cref="T:LightInject.ThreadSafeDictionary`2"/>.</param>
-            <returns>When this method returns, contains the object removed from the <see cref="T:LightInject.ThreadSafeDictionary`2"/>, 
-            or the default value of the <typeparamref name="TValue"/> type if key does not exist.</returns>
-        </member>
-        <member name="M:LightInject.ThreadSafeDictionary`2.TryAdd(`0,`1)">
-            <summary>
-            Attempts to add the specified key and value to the <see cref="T:LightInject.ThreadSafeDictionary`2"/>.
-            </summary>
-            <param name="key">The key of the element to add.</param>
-            <param name="value">The value of the element to add.</param>
-            <returns>true if the key/value pair was added to the <see cref="T:LightInject.ThreadSafeDictionary`2"/> successfully; false if the key already exists.</returns>
-        </member>
-        <member name="M:LightInject.ThreadSafeDictionary`2.Clear">
-            <summary>
-            Removes all keys and values from the <see cref="T:LightInject.ThreadSafeDictionary`2"/>.
-            </summary>        
-        </member>
-        <member name="M:LightInject.ThreadSafeDictionary`2.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the <see cref="T:LightInject.ThreadSafeDictionary`2"/>.
-            </summary>
-            <returns>An enumerator for the <see cref="T:LightInject.ThreadSafeDictionary`2"/></returns>
-        </member>
-        <member name="M:LightInject.ThreadSafeDictionary`2.System#Collections#IEnumerable#GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the <see cref="T:LightInject.ThreadSafeDictionary`2"/>.
-            </summary>
-            <returns>An enumerator for the <see cref="T:LightInject.ThreadSafeDictionary`2"/></returns>
-        </member>
-        <member name="P:LightInject.ThreadSafeDictionary`2.Count">
-            <summary>
-            Gets the number of key/value pairs contained in the <see cref="T:LightInject.ThreadSafeDictionary`2"/>.
-            </summary>
-        </member>
-        <member name="P:LightInject.ThreadSafeDictionary`2.Values">
-            <summary>
-            Gets a collection that contains the values in the <see cref="T:LightInject.ThreadSafeDictionary`2"/>.
-            </summary>
-        </member>
-        <member name="P:LightInject.ThreadSafeDictionary`2.Keys">
-            <summary>
-            Gets a collection containing the keys in the <see cref="T:LightInject.ThreadSafeDictionary`2"/>.
-            </summary>
-        </member>
-        <member name="P:LightInject.ThreadSafeDictionary`2.Item(`0)">
-            <summary>
-            Gets or sets the value associated with the specified key.
-            </summary>
-            <param name="key">The key of the value to get or set.</param>
-            <returns>The value of the key/value pair at the specified index.</returns>
         </member>
         <member name="T:LightInject.PerThreadScopeManagerProvider">
             <summary>
@@ -1782,150 +1926,36 @@
             </summary>
             <returns>The <see cref="T:LightInject.ScopeManager"/> that is responsible for managing scopes.</returns>
         </member>
-        <member name="T:LightInject.DynamicMethod">
+        <member name="T:LightInject.PerLogicalCallContextScopeManagerProvider">
             <summary>
-            Defines and represents a dynamic method that can be compiled and executed.
-            </summary>    
-        </member>
-        <member name="M:LightInject.DynamicMethod.#ctor(System.Type,System.Type[])">
-            <summary>
-            Initializes a new instance of the <see cref="T:LightInject.DynamicMethod"/> class.
-            </summary>
-            <param name="returnType">A <see cref="T:System.Type"/> object that specifies the return type of the dynamic method.</param>
-            <param name="parameterTypes">An array of <see cref="T:System.Type"/> objects specifying the types of the parameters of the dynamic method, or null if the method has no parameters.</param>
-        </member>
-        <member name="M:LightInject.DynamicMethod.CreateDelegate(System.Type)">
-            <summary>
-            Completes the dynamic method and creates a delegate that can be used to execute it
-            </summary>
-            <param name="delegateType">A delegate type whose signature matches that of the dynamic method.</param>
-            <returns>A delegate of the specified type, which can be used to execute the dynamic method.</returns>
-        </member>
-        <member name="M:LightInject.DynamicMethod.CreateDelegate(System.Type,System.Object)">
-            <summary>
-            Completes the dynamic method and creates a delegate that can be used to execute it, specifying the delegate type and an object the delegate is bound to.
-            </summary>
-            <param name="delegateType">A delegate type whose signature matches that of the dynamic method, minus the first parameter.</param>
-            <param name="target">An object the delegate is bound to. Must be of the same type as the first parameter of the dynamic method.</param>
-            <returns>A delegate of the specified type, which can be used to execute the dynamic method with the specified target object.</returns>
-        </member>
-        <member name="M:LightInject.DynamicMethod.GetILGenerator">
-            <summary>
-            Returns a <see cref="T:LightInject.ILGenerator"/> for the method
-            </summary>
-            <returns>An <see cref="T:LightInject.ILGenerator"/> object for the method.</returns>
-        </member>
-        <member name="T:LightInject.ILGenerator">
-            <summary>
-            A generator that transforms <see cref="T:System.Reflection.Emit.OpCodes"/> into an expression tree.
+            A <see cref="T:LightInject.IScopeManagerProvider"/> that provides a <see cref="T:LightInject.ScopeManager"/> across
+            async points.
             </summary>
         </member>
-        <member name="M:LightInject.ILGenerator.#ctor(System.Linq.Expressions.ParameterExpression[])">
+        <member name="M:LightInject.PerLogicalCallContextScopeManagerProvider.GetScopeManager">
             <summary>
-            Initializes a new instance of the <see cref="T:LightInject.ILGenerator"/> class.
+            Returns the <see cref="T:LightInject.ScopeManager"/> that is responsible for managing scopes.
             </summary>
-            <param name="parameters">An array of parameters used by the target <see cref="T:LightInject.DynamicMethod"/>.</param>
+            <returns>The <see cref="T:LightInject.ScopeManager"/> that is responsible for managing scopes.</returns>
         </member>
-        <member name="M:LightInject.ILGenerator.Emit(System.Reflection.Emit.OpCode,System.Reflection.ConstructorInfo)">
+        <member name="T:LightInject.ThreadSafeDictionary`2">
             <summary>
-            Puts the specified instruction and metadata token for the specified constructor onto the Microsoft intermediate language (MSIL) stream of instructions.
+            A thread safe dictionary.
             </summary>
-            <param name="code">The MSIL instruction to be emitted onto the stream.</param>
-            <param name="constructor">A <see cref="T:System.Reflection.ConstructorInfo"/> representing a constructor.</param>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
         </member>
-        <member name="M:LightInject.ILGenerator.Emit(System.Reflection.Emit.OpCode)">
+        <member name="M:LightInject.ThreadSafeDictionary`2.#ctor">
             <summary>
-            Puts the specified instruction onto the stream of instructions.
-            </summary>
-            <param name="code">The Microsoft Intermediate Language (MSIL) instruction to be put onto the stream.</param>
-        </member>
-        <member name="M:LightInject.ILGenerator.Emit(System.Reflection.Emit.OpCode,LightInject.LocalBuilder)">
-            <summary>
-            Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the index of the given local variable.
-            </summary>
-            <param name="code">The MSIL instruction to be emitted onto the stream.</param>
-            <param name="localBuilder">A local variable.</param>
-        </member>
-        <member name="M:LightInject.ILGenerator.Emit(System.Reflection.Emit.OpCode,System.Int32)">
-            <summary>
-            Puts the specified instruction and numerical argument onto the Microsoft intermediate language (MSIL) stream of instructions.
-            </summary>
-            <param name="code">The MSIL instruction to be put onto the stream.</param>
-            <param name="arg">The numerical argument pushed onto the stream immediately after the instruction.</param>
-        </member>
-        <member name="M:LightInject.ILGenerator.Emit(System.Reflection.Emit.OpCode,System.SByte)">
-            <summary>
-            Puts the specified instruction and numerical argument onto the Microsoft intermediate language (MSIL) stream of instructions.
-            </summary>
-            <param name="code">The MSIL instruction to be put onto the stream.</param>
-            <param name="arg">The numerical argument pushed onto the stream immediately after the instruction.</param>
-        </member>
-        <member name="M:LightInject.ILGenerator.Emit(System.Reflection.Emit.OpCode,System.Byte)">
-            <summary>
-            Puts the specified instruction and numerical argument onto the Microsoft intermediate language (MSIL) stream of instructions.
-            </summary>
-            <param name="code">The MSIL instruction to be put onto the stream.</param>
-            <param name="arg">The numerical argument pushed onto the stream immediately after the instruction.</param>
-        </member>
-        <member name="M:LightInject.ILGenerator.Emit(System.Reflection.Emit.OpCode,System.String)">
-            <summary>
-            Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the metadata token for the given string.
-            </summary>
-            <param name="code">The MSIL instruction to be emitted onto the stream.</param>
-            <param name="arg">The String to be emitted.</param>
-        </member>
-        <member name="M:LightInject.ILGenerator.DeclareLocal(System.Type)">
-            <summary>
-            Declares a local variable of the specified type.
-            </summary>
-            <param name="type">A <see cref="T:System.Type"/> object that represents the type of the local variable.</param>
-            <returns>The declared local variable.</returns>
-        </member>
-        <member name="M:LightInject.ILGenerator.Emit(System.Reflection.Emit.OpCode,System.Type)">
-            <summary>
-            Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the metadata token for the given type.
-            </summary>
-            <param name="code">The MSIL instruction to be put onto the stream.</param>
-            <param name="type">A <see cref="T:System.Type"/>.</param>
-        </member>
-        <member name="M:LightInject.ILGenerator.Emit(System.Reflection.Emit.OpCode,System.Reflection.MethodInfo)">
-            <summary>
-            Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the metadata token for the given method.
-            </summary>
-            <param name="code">The MSIL instruction to be emitted onto the stream.</param>
-            <param name="methodInfo">A <see cref="T:System.Reflection.MethodInfo"/> representing a method.</param>
-        </member>
-        <member name="P:LightInject.ILGenerator.CurrentExpression">
-            <summary>
-            Gets the current expression based the emitted <see cref="T:System.Reflection.Emit.OpCodes"/>. 
+            Initializes a new instance of the <see cref="T:LightInject.ThreadSafeDictionary`2"/> class.
             </summary>
         </member>
-        <member name="T:LightInject.LocalBuilder">
+        <member name="M:LightInject.ThreadSafeDictionary`2.#ctor(System.Collections.Generic.IEqualityComparer{`0})">
             <summary>
-            Represents a local variable within a method or constructor.
+            Initializes a new instance of the <see cref="T:LightInject.ThreadSafeDictionary`2"/> class using the
+            given <see cref="T:System.Collections.Generic.IEqualityComparer`1"/>.
             </summary>
-        </member>
-        <member name="M:LightInject.LocalBuilder.#ctor(System.Type,System.Int32)">
-            <summary>
-            Initializes a new instance of the <see cref="T:LightInject.LocalBuilder"/> class.
-            </summary>
-            <param name="type">The <see cref="T:System.Type"/> of the variable that this <see cref="T:LightInject.LocalBuilder"/> represents.</param>
-            <param name="localIndex">The zero-based index of the local variable within the method body.</param> 
-        </member>
-        <member name="P:LightInject.LocalBuilder.Variable">
-            <summary>
-            Gets the <see cref="T:System.Linq.Expressions.ParameterExpression"/> that represents the variable.
-            </summary>
-        </member>
-        <member name="P:LightInject.LocalBuilder.LocalType">
-            <summary>
-            Gets the type of the local variable.
-            </summary>
-        </member>
-        <member name="P:LightInject.LocalBuilder.LocalIndex">
-            <summary>
-            Gets the zero-based index of the local variable within the method body.
-            </summary>
+            <param name="comparer">The <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> implementation to use when comparing keys</param>
         </member>
         <member name="T:LightInject.MostResolvableConstructorSelector">
             <summary>
@@ -1975,8 +2005,14 @@
             <summary>
             Initializes a new instance of the <see cref="T:LightInject.PropertyDependencySelector"/> class.
             </summary>
-            <param name="propertySelector">The <see cref="T:LightInject.IPropertySelector"/> that is 
+            <param name="propertySelector">The <see cref="T:LightInject.IPropertySelector"/> that is
             responsible for selecting a list of injectable properties.</param>
+        </member>
+        <member name="P:LightInject.PropertyDependencySelector.PropertySelector">
+            <summary>
+            Gets the <see cref="T:LightInject.IPropertySelector"/> that is responsible for selecting a
+            list of injectable properties.
+            </summary>
         </member>
         <member name="M:LightInject.PropertyDependencySelector.Execute(System.Type)">
             <summary>
@@ -1986,33 +2022,29 @@
             <returns>A list of <see cref="T:LightInject.PropertyDependency"/> instances that represents the property
             dependencies for the given <paramref name="type"/>.</returns>
         </member>
-        <member name="P:LightInject.PropertyDependencySelector.PropertySelector">
-            <summary>
-            Gets the <see cref="T:LightInject.IPropertySelector"/> that is responsible for selecting a 
-            list of injectable properties.
-            </summary>
-        </member>
         <member name="T:LightInject.TypeConstructionInfoBuilder">
             <summary>
             Builds a <see cref="T:LightInject.ConstructionInfo"/> instance based on the implementing <see cref="T:System.Type"/>.
             </summary>
         </member>
-        <member name="M:LightInject.TypeConstructionInfoBuilder.#ctor(LightInject.IConstructorSelector,LightInject.IConstructorDependencySelector,LightInject.IPropertyDependencySelector)">
+        <member name="M:LightInject.TypeConstructionInfoBuilder.#ctor(LightInject.IConstructorSelector,LightInject.IConstructorDependencySelector,LightInject.IPropertyDependencySelector,System.Func{System.Type,System.String,System.Delegate},System.Func{System.Type,System.String,System.Delegate})">
             <summary>
             Initializes a new instance of the <see cref="T:LightInject.TypeConstructionInfoBuilder"/> class.
             </summary>
             <param name="constructorSelector">The <see cref="T:LightInject.IConstructorSelector"/> that is responsible
             for selecting the constructor to be used for constructor injection.</param>
-            <param name="constructorDependencySelector">The <see cref="T:LightInject.IConstructorDependencySelector"/> that is 
+            <param name="constructorDependencySelector">The <see cref="T:LightInject.IConstructorDependencySelector"/> that is
             responsible for selecting the constructor dependencies for a given <see cref="T:LightInject.ConstructionInfo"/>.</param>
             <param name="propertyDependencySelector">The <see cref="T:LightInject.IPropertyDependencySelector"/> that is responsible
             for selecting the property dependencies for a given <see cref="T:System.Type"/>.</param>
+            <param name="getConstructorDependencyExpression">A function delegate that returns the registered constructor dependency expression, if any.</param>
+            <param name="getPropertyDependencyExpression">A function delegate that returns the registered property dependency expression, if any.</param>
         </member>
-        <member name="M:LightInject.TypeConstructionInfoBuilder.Execute(System.Type)">
+        <member name="M:LightInject.TypeConstructionInfoBuilder.Execute(LightInject.Registration)">
             <summary>
-            Analyzes the <paramref name="implementingType"/> and returns a <see cref="T:LightInject.ConstructionInfo"/> instance.
+            Analyzes the <paramref name="registration"/> and returns a <see cref="T:LightInject.ConstructionInfo"/> instance.
             </summary>
-            <param name="implementingType">The <see cref="T:System.Type"/> to analyze.</param>
+            <param name="registration">The <see cref="T:LightInject.Registration"/> that represents the implementing type to analyze.</param>
             <returns>A <see cref="T:LightInject.ConstructionInfo"/> instance.</returns>
         </member>
         <member name="T:LightInject.ConstructionInfoProvider">
@@ -2024,7 +2056,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:LightInject.ConstructionInfoProvider"/> class.
             </summary>
-            <param name="constructionInfoBuilder">The <see cref="T:LightInject.IConstructionInfoBuilder"/> that 
+            <param name="constructionInfoBuilder">The <see cref="T:LightInject.IConstructionInfoBuilder"/> that
             is responsible for building a <see cref="T:LightInject.ConstructionInfo"/> instance based on a given <see cref="T:LightInject.Registration"/>.</param>
         </member>
         <member name="M:LightInject.ConstructionInfoProvider.GetConstructionInfo(LightInject.Registration)">
@@ -2036,89 +2068,14 @@
         </member>
         <member name="M:LightInject.ConstructionInfoProvider.Invalidate">
             <summary>
-            Invalidates the <see cref="T:LightInject.IConstructionInfoProvider"/> and causes new <see cref="T:LightInject.ConstructionInfo"/> instances 
+            Invalidates the <see cref="T:LightInject.IConstructionInfoProvider"/> and causes new <see cref="T:LightInject.ConstructionInfo"/> instances
             to be created when the <see cref="M:LightInject.IConstructionInfoProvider.GetConstructionInfo(LightInject.Registration)"/> method is called.
             </summary>
-        </member>
-        <member name="T:LightInject.ConstructionInfoBuilder">
-            <summary>
-            Provides a <see cref="T:System.Reflection.ConstructorInfo"/> instance 
-            that describes how to create a service instance.
-            </summary>
-        </member>
-        <member name="M:LightInject.ConstructionInfoBuilder.#ctor(System.Func{LightInject.ILambdaConstructionInfoBuilder},System.Func{LightInject.ITypeConstructionInfoBuilder})">
-            <summary>
-            Initializes a new instance of the <see cref="T:LightInject.ConstructionInfoBuilder"/> class.             
-            </summary>
-            <param name="lambdaConstructionInfoBuilderFactory">
-            A function delegate used to provide a <see cref="T:LightInject.ILambdaConstructionInfoBuilder"/> instance.
-            </param>
-            <param name="typeConstructionInfoBuilderFactory">
-            A function delegate used to provide a <see cref="T:LightInject.ITypeConstructionInfoBuilder"/> instance.
-            </param>
-        </member>
-        <member name="M:LightInject.ConstructionInfoBuilder.Execute(LightInject.Registration)">
-            <summary>
-            Returns a <see cref="T:LightInject.ConstructionInfo"/> instance based on the given <see cref="T:LightInject.Registration"/>.
-            </summary>
-            <param name="registration">The <see cref="T:LightInject.Registration"/> for which to return a <see cref="T:LightInject.ConstructionInfo"/> instance.</param>
-            <returns>A <see cref="T:LightInject.ConstructionInfo"/> instance that describes how to create a service instance.</returns>
-        </member>
-        <member name="T:LightInject.LambdaConstructionInfoBuilder">
-            <summary>
-            Parses a <see cref="T:System.Linq.Expressions.LambdaExpression"/> into a <see cref="T:LightInject.ConstructionInfo"/> instance.
-            </summary>
-        </member>
-        <member name="M:LightInject.LambdaConstructionInfoBuilder.Execute(System.Linq.Expressions.LambdaExpression)">
-            <summary>
-            Parses the <paramref name="lambdaExpression"/> and returns a <see cref="T:LightInject.ConstructionInfo"/> instance.
-            </summary>
-            <param name="lambdaExpression">The <see cref="T:System.Linq.Expressions.LambdaExpression"/> to parse.</param>
-            <returns>A <see cref="T:LightInject.ConstructionInfo"/> instance.</returns>
-        </member>
-        <member name="T:LightInject.LambdaExpressionValidator">
-            <summary>
-            Inspects the body of a <see cref="T:System.Linq.Expressions.LambdaExpression"/> and determines if the expression can be parsed.
-            </summary>
-        </member>
-        <member name="M:LightInject.LambdaExpressionValidator.CanParse(System.Linq.Expressions.LambdaExpression)">
-            <summary>
-            Determines if the <paramref name="lambdaExpression"/> can be parsed.
-            </summary>
-            <param name="lambdaExpression">The <see cref="T:System.Linq.Expressions.LambdaExpression"/> to validate.</param>
-            <returns><b>true</b>, if the expression can be parsed, otherwise <b>false</b>.</returns>
-        </member>
-        <member name="M:LightInject.LambdaExpressionValidator.VisitLambda``1(System.Linq.Expressions.Expression{``0})">
-            <summary>
-            Visits the children of the <see cref="T:System.Linq.Expressions.Expression`1"/>.
-            </summary>
-            <returns>
-            The modified expression, if it or any sub-expression was modified; otherwise, returns the original expression.
-            </returns>
-            <param name="node">The expression to visit.</param><typeparam name="T">The type of the delegate.</typeparam>
-        </member>
-        <member name="M:LightInject.LambdaExpressionValidator.VisitUnary(System.Linq.Expressions.UnaryExpression)">
-            <summary>
-            Visits the children of the <see cref="T:System.Linq.Expressions.UnaryExpression"/>.
-            </summary>
-            <returns>
-            The modified expression, if it or any sub-expression was modified; otherwise, returns the original expression.
-            </returns>
-            <param name="node">The expression to visit.</param>
-        </member>
-        <member name="M:LightInject.LambdaExpressionValidator.VisitNewArray(System.Linq.Expressions.NewArrayExpression)">
-            <summary>
-            Visits the children of the <see cref="T:System.Linq.Expressions.NewArrayExpression"/>.
-            </summary>
-            <returns>
-            The modified expression, if it or any sub-expression was modified; otherwise, returns the original expression.
-            </returns>
-            <param name="node">The expression to visit.</param>
         </member>
         <member name="T:LightInject.ServiceRequest">
             <summary>
             Contains information about a service request that originates from a rule based service registration.
-            </summary>    
+            </summary>
         </member>
         <member name="M:LightInject.ServiceRequest.#ctor(System.Type,System.String,LightInject.IServiceFactory)">
             <summary>
@@ -2170,7 +2127,7 @@
         </member>
         <member name="P:LightInject.DecoratorRegistration.CanDecorate">
             <summary>
-            Gets or sets a function delegate that determines if the decorator can decorate the service 
+            Gets or sets a function delegate that determines if the decorator can decorate the service
             represented by the supplied <see cref="T:LightInject.ServiceRegistration"/>.
             </summary>
         </member>
@@ -2194,24 +2151,6 @@
             Contains information about a registered service.
             </summary>
         </member>
-        <member name="M:LightInject.ServiceRegistration.GetHashCode">
-            <summary>
-            Serves as a hash function for a particular type. 
-            </summary>
-            <returns>
-            A hash code for the current <see cref="T:System.Object"/>.
-            </returns>
-            <filterpriority>2</filterpriority>
-        </member>
-        <member name="M:LightInject.ServiceRegistration.Equals(System.Object)">
-            <summary>
-            Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.
-            </summary>
-            <returns>
-            True if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.
-            </returns>
-            <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param><filterpriority>2</filterpriority>
-        </member>
         <member name="P:LightInject.ServiceRegistration.ServiceName">
             <summary>
             Gets or sets the name of the service.
@@ -2229,9 +2168,27 @@
         </member>
         <member name="P:LightInject.ServiceRegistration.IsReadOnly">
             <summary>
-            Gets or sets a value indicating whether this <see cref="T:LightInject.ServiceRegistration"/> can be overridden 
+            Gets or sets a value indicating whether this <see cref="T:LightInject.ServiceRegistration"/> can be overridden
             by another registration.
             </summary>
+        </member>
+        <member name="M:LightInject.ServiceRegistration.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type.
+            </summary>
+            <returns>
+            A hash code for the current <see cref="T:System.Object"/>.
+            </returns>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:LightInject.ServiceRegistration.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.
+            </summary>
+            <returns>
+            True if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.
+            </returns>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param><filterpriority>2</filterpriority>
         </member>
         <member name="T:LightInject.ConstructionInfo">
             <summary>
@@ -2255,14 +2212,14 @@
         </member>
         <member name="P:LightInject.ConstructionInfo.PropertyDependencies">
             <summary>
-            Gets a list of <see cref="T:LightInject.PropertyDependency"/> instances that represent 
-            the property dependencies for the target service instance. 
+            Gets a list of <see cref="T:LightInject.PropertyDependency"/> instances that represent
+            the property dependencies for the target service instance.
             </summary>
         </member>
         <member name="P:LightInject.ConstructionInfo.ConstructorDependencies">
             <summary>
-            Gets a list of <see cref="T:LightInject.ConstructorDependency"/> instances that represent 
-            the property dependencies for the target service instance. 
+            Gets a list of <see cref="T:LightInject.ConstructorDependency"/> instances that represent
+            the property dependencies for the target service instance.
             </summary>
         </member>
         <member name="P:LightInject.ConstructionInfo.FactoryDelegate">
@@ -2274,12 +2231,6 @@
             <summary>
             Represents a class dependency.
             </summary>
-        </member>
-        <member name="M:LightInject.Dependency.ToString">
-            <summary>
-            Returns textual information about the dependency.
-            </summary>
-            <returns>A string that describes the dependency.</returns>
         </member>
         <member name="P:LightInject.Dependency.ServiceType">
             <summary>
@@ -2294,7 +2245,7 @@
         <member name="P:LightInject.Dependency.FactoryExpression">
             <summary>
             Gets or sets the <see cref="P:LightInject.Dependency.FactoryExpression"/> that represent getting the value of the <see cref="T:LightInject.Dependency"/>.
-            </summary>            
+            </summary>
         </member>
         <member name="P:LightInject.Dependency.Name">
             <summary>
@@ -2306,16 +2257,16 @@
             Gets or sets a value indicating whether this dependency is required.
             </summary>
         </member>
-        <member name="T:LightInject.PropertyDependency">
-            <summary>
-            Represents a property dependency.
-            </summary>
-        </member>
-        <member name="M:LightInject.PropertyDependency.ToString">
+        <member name="M:LightInject.Dependency.ToString">
             <summary>
             Returns textual information about the dependency.
             </summary>
             <returns>A string that describes the dependency.</returns>
+        </member>
+        <member name="T:LightInject.PropertyDependency">
+            <summary>
+            Represents a property dependency.
+            </summary>
         </member>
         <member name="P:LightInject.PropertyDependency.Property">
             <summary>
@@ -2327,16 +2278,16 @@
             Gets the name of the dependency accessor.
             </summary>
         </member>
-        <member name="T:LightInject.ConstructorDependency">
-            <summary>
-            Represents a constructor dependency.
-            </summary>
-        </member>
-        <member name="M:LightInject.ConstructorDependency.ToString">
+        <member name="M:LightInject.PropertyDependency.ToString">
             <summary>
             Returns textual information about the dependency.
             </summary>
             <returns>A string that describes the dependency.</returns>
+        </member>
+        <member name="T:LightInject.ConstructorDependency">
+            <summary>
+            Represents a constructor dependency.
+            </summary>
         </member>
         <member name="P:LightInject.ConstructorDependency.Parameter">
             <summary>
@@ -2345,14 +2296,20 @@
         </member>
         <member name="P:LightInject.ConstructorDependency.IsDecoratorTarget">
             <summary>
-            Gets or sets a value indicating whether that this parameter represents  
-            the decoration target passed into a decorator instance. 
+            Gets or sets a value indicating whether that this parameter represents
+            the decoration target passed into a decorator instance.
             </summary>
         </member>
         <member name="P:LightInject.ConstructorDependency.Name">
             <summary>
             Gets the name of the dependency accessor.
             </summary>
+        </member>
+        <member name="M:LightInject.ConstructorDependency.ToString">
+            <summary>
+            Returns textual information about the dependency.
+            </summary>
+            <returns>A string that describes the dependency.</returns>
         </member>
         <member name="T:LightInject.PerContainerLifetime">
             <summary>
@@ -2390,7 +2347,7 @@
             Ensures that only one service instance can exist within a given <see cref="T:LightInject.Scope"/>.
             </summary>
             <remarks>
-            If the service instance implements <see cref="T:System.IDisposable"/>, 
+            If the service instance implements <see cref="T:System.IDisposable"/>,
             it will be disposed when the <see cref="T:LightInject.Scope"/> ends.
             </remarks>
         </member>
@@ -2407,9 +2364,14 @@
             Manages a set of <see cref="T:LightInject.Scope"/> instances.
             </summary>
         </member>
+        <member name="P:LightInject.ScopeManager.CurrentScope">
+            <summary>
+            Gets the current <see cref="T:LightInject.Scope"/>.
+            </summary>
+        </member>
         <member name="M:LightInject.ScopeManager.BeginScope">
             <summary>
-            Starts a new <see cref="T:LightInject.Scope"/>. 
+            Starts a new <see cref="T:LightInject.Scope"/>.
             </summary>
             <returns>A new <see cref="T:LightInject.Scope"/>.</returns>
         </member>
@@ -2419,14 +2381,9 @@
             </summary>
             <param name="scope">The scope that is completed.</param>
         </member>
-        <member name="P:LightInject.ScopeManager.CurrentScope">
-            <summary>
-            Gets the current <see cref="T:LightInject.Scope"/>.
-            </summary>
-        </member>
         <member name="T:LightInject.Scope">
             <summary>
-            Represents a scope. 
+            Represents a scope.
             </summary>
         </member>
         <member name="M:LightInject.Scope.#ctor(LightInject.ScopeManager,LightInject.Scope)">
@@ -2435,17 +2392,6 @@
             </summary>
             <param name="scopeManager">The <see cref="F:LightInject.Scope.scopeManager"/> that manages this <see cref="T:LightInject.Scope"/>.</param>
             <param name="parentScope">The parent <see cref="T:LightInject.Scope"/>.</param>
-        </member>
-        <member name="M:LightInject.Scope.TrackInstance(System.IDisposable)">
-            <summary>
-            Registers the <paramref name="disposable"/> so that it is disposed when the scope is completed.
-            </summary>
-            <param name="disposable">The <see cref="T:System.IDisposable"/> object to register.</param>
-        </member>
-        <member name="M:LightInject.Scope.Dispose">
-            <summary>
-            Disposes all instances tracked by this scope.
-            </summary>
         </member>
         <member name="E:LightInject.Scope.Completed">
             <summary>
@@ -2460,6 +2406,17 @@
         <member name="P:LightInject.Scope.ChildScope">
             <summary>
             Gets the child <see cref="T:LightInject.Scope"/>.
+            </summary>
+        </member>
+        <member name="M:LightInject.Scope.TrackInstance(System.IDisposable)">
+            <summary>
+            Registers the <paramref name="disposable"/> so that it is disposed when the scope is completed.
+            </summary>
+            <param name="disposable">The <see cref="T:System.IDisposable"/> object to register.</param>
+        </member>
+        <member name="M:LightInject.Scope.Dispose">
+            <summary>
+            Disposes all instances tracked by this scope.
             </summary>
         </member>
         <member name="T:LightInject.CompositionRootTypeAttribute">
@@ -2478,10 +2435,33 @@
             Gets the <see cref="T:System.Type"/> that implements the <see cref="T:LightInject.ICompositionRoot"/> interface.
             </summary>
         </member>
+        <member name="T:LightInject.CompositionRootAttributeExtractor">
+            <summary>
+            A class that is capable of extracting attributes of type
+            <see cref="T:LightInject.CompositionRootTypeAttribute"/> from an <see cref="T:System.Reflection.Assembly"/>.
+            </summary>
+        </member>
+        <member name="M:LightInject.CompositionRootAttributeExtractor.GetAttributes(System.Reflection.Assembly)">
+            <summary>
+            Gets a list of attributes of type <see cref="T:LightInject.CompositionRootTypeAttribute"/> from
+            the given <paramref name="assembly"/>.
+            </summary>
+            <param name="assembly">The assembly from which to extract
+            <see cref="T:LightInject.CompositionRootTypeAttribute"/> attributes.</param>
+            <returns>A list of attributes of type <see cref="T:LightInject.CompositionRootTypeAttribute"/></returns>
+        </member>
         <member name="T:LightInject.CompositionRootTypeExtractor">
             <summary>
             Extracts concrete <see cref="T:LightInject.ICompositionRoot"/> implementations from an <see cref="T:System.Reflection.Assembly"/>.
             </summary>
+        </member>
+        <member name="M:LightInject.CompositionRootTypeExtractor.#ctor(LightInject.ICompositionRootAttributeExtractor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LightInject.CompositionRootTypeExtractor"/> class.
+            </summary>
+            <param name="compositionRootAttributeExtractor">The <see cref="T:LightInject.ICompositionRootAttributeExtractor"/>
+            that is responsible for extracting attributes of type <see cref="T:LightInject.CompositionRootTypeAttribute"/> from
+            a given <see cref="T:System.Reflection.Assembly"/>.</param>
         </member>
         <member name="M:LightInject.CompositionRootTypeExtractor.Execute(System.Reflection.Assembly)">
             <summary>
@@ -2525,11 +2505,12 @@
             A class that is responsible for instantiating and executing an <see cref="T:LightInject.ICompositionRoot"/>.
             </summary>
         </member>
-        <member name="M:LightInject.CompositionRootExecutor.#ctor(LightInject.IServiceRegistry)">
+        <member name="M:LightInject.CompositionRootExecutor.#ctor(LightInject.IServiceRegistry,System.Func{System.Type,LightInject.ICompositionRoot})">
             <summary>
             Initializes a new instance of the <see cref="T:LightInject.CompositionRootExecutor"/> class.
             </summary>
             <param name="serviceRegistry">The <see cref="T:LightInject.IServiceRegistry"/> to be configured by the <see cref="T:LightInject.ICompositionRoot"/>.</param>
+            <param name="activator">The function delegate that is responsible for creating an instance of the <see cref="T:LightInject.ICompositionRoot"/>.</param>
         </member>
         <member name="M:LightInject.CompositionRootExecutor.Execute(System.Type)">
             <summary>
@@ -2540,24 +2521,24 @@
         <member name="T:LightInject.AssemblyScanner">
             <summary>
             An assembly scanner that registers services based on the types contained within an <see cref="T:System.Reflection.Assembly"/>.
-            </summary>    
+            </summary>
         </member>
         <member name="M:LightInject.AssemblyScanner.#ctor(LightInject.ITypeExtractor,LightInject.ITypeExtractor,LightInject.ICompositionRootExecutor)">
             <summary>
             Initializes a new instance of the <see cref="T:LightInject.AssemblyScanner"/> class.
             </summary>
-            <param name="concreteTypeExtractor">The <see cref="T:LightInject.ITypeExtractor"/> that is responsible for 
+            <param name="concreteTypeExtractor">The <see cref="T:LightInject.ITypeExtractor"/> that is responsible for
             extracting concrete types from the assembly being scanned.</param>
-            <param name="compositionRootTypeExtractor">The <see cref="T:LightInject.ITypeExtractor"/> that is responsible for 
+            <param name="compositionRootTypeExtractor">The <see cref="T:LightInject.ITypeExtractor"/> that is responsible for
             extracting <see cref="T:LightInject.ICompositionRoot"/> implementations from the assembly being scanned.</param>
-            <param name="compositionRootExecutor">The <see cref="T:LightInject.ICompositionRootExecutor"/> that is 
+            <param name="compositionRootExecutor">The <see cref="T:LightInject.ICompositionRootExecutor"/> that is
             responsible for creating and executing an <see cref="T:LightInject.ICompositionRoot"/>.</param>
         </member>
         <member name="M:LightInject.AssemblyScanner.Scan(System.Reflection.Assembly,LightInject.IServiceRegistry,System.Func{LightInject.ILifetime},System.Func{System.Type,System.Type,System.Boolean})">
             <summary>
             Scans the target <paramref name="assembly"/> and registers services found within the assembly.
             </summary>
-            <param name="assembly">The <see cref="T:System.Reflection.Assembly"/> to scan.</param>        
+            <param name="assembly">The <see cref="T:System.Reflection.Assembly"/> to scan.</param>
             <param name="serviceRegistry">The target <see cref="T:LightInject.IServiceRegistry"/> instance.</param>
             <param name="lifetimeFactory">The <see cref="T:LightInject.ILifetime"/> factory that controls the lifetime of the registered service.</param>
             <param name="shouldRegister">A function delegate that determines if a service implementation should be registered.</param>
@@ -2566,7 +2547,7 @@
             <summary>
             Scans the target <paramref name="assembly"/> and executes composition roots found within the <see cref="T:System.Reflection.Assembly"/>.
             </summary>
-            <param name="assembly">The <see cref="T:System.Reflection.Assembly"/> to scan.</param>        
+            <param name="assembly">The <see cref="T:System.Reflection.Assembly"/> to scan.</param>
             <param name="serviceRegistry">The target <see cref="T:LightInject.IServiceRegistry"/> instance.</param>
         </member>
         <member name="T:LightInject.PropertySelector">
@@ -2588,9 +2569,28 @@
             <param name="propertyInfo">The <see cref="T:System.Reflection.PropertyInfo"/> that describes the target property.</param>
             <returns><b>true</b> if the property is injectable, otherwise <b>false</b>.</returns>
         </member>
+        <member name="T:LightInject.AssemblyLoader">
+            <summary>
+            Loads all assemblies from the application base directory that matches the given search pattern.
+            </summary>
+        </member>
+        <member name="M:LightInject.AssemblyLoader.Load(System.String)">
+            <summary>
+            Loads a set of assemblies based on the given <paramref name="searchPattern"/>.
+            </summary>
+            <param name="searchPattern">The search pattern to use.</param>
+            <returns>A list of assemblies based on the given <paramref name="searchPattern"/>.</returns>
+        </member>
+        <member name="M:LightInject.AssemblyLoader.CanLoad(System.String)">
+            <summary>
+            Indicates if the current <paramref name="fileName"/> represent a file that can be loaded.
+            </summary>
+            <param name="fileName">The name of the target file.</param>
+            <returns><b>true</b> if the file can be loaded, otherwise <b>false</b>.</returns>
+        </member>
         <member name="T:LightInject.KeyValue`2">
             <summary>
-            Defines an immutable representation of a key and a value.  
+            Defines an immutable representation of a key and a value.
             </summary>
             <typeparam name="TKey">The type of the key.</typeparam>
             <typeparam name="TValue">The type of the value.</typeparam>
@@ -2647,6 +2647,46 @@
             <param name="value">The value to be added to the new list.</param>
             <returns>A new <see cref="T:LightInject.ImmutableList`1"/> that contains the new <paramref name="value"/>.</returns>
         </member>
+        <member name="T:LightInject.ImmutableHashTable`2">
+            <summary>
+            A simple immutable add-only hash table.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+        </member>
+        <member name="F:LightInject.ImmutableHashTable`2.Empty">
+            <summary>
+            An empty <see cref="T:LightInject.ImmutableHashTree`2"/>.
+            </summary>
+        </member>
+        <member name="F:LightInject.ImmutableHashTable`2.Count">
+            <summary>
+            Gets the number of items stored in the hash table.
+            </summary>
+        </member>
+        <member name="F:LightInject.ImmutableHashTable`2.Buckets">
+            <summary>
+            Gets the hast table buckets.
+            </summary>
+        </member>
+        <member name="F:LightInject.ImmutableHashTable`2.Divisor">
+            <summary>
+            Gets the divisor used to calculate the bucket index from the hash code of the key.
+            </summary>
+        </member>
+        <member name="M:LightInject.ImmutableHashTable`2.#ctor(LightInject.ImmutableHashTable{`0,`1},`0,`1)">
+            <summary>
+            Initializes a new instance of the <see cref="T:LightInject.ImmutableHashTable`2"/> class.
+            </summary>
+            <param name="previous">The "previous" hash table that contains already existing values.</param>
+            <param name="key">The key to be associated with the value.</param>
+            <param name="value">The value to be added to the tree.</param>
+        </member>
+        <member name="M:LightInject.ImmutableHashTable`2.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:LightInject.ImmutableHashTable`2"/> class from being created.
+            </summary>
+        </member>
         <member name="T:LightInject.ImmutableHashTree`2">
             <summary>
             A balanced binary search tree implemented as an AVL tree.
@@ -2671,7 +2711,7 @@
         </member>
         <member name="F:LightInject.ImmutableHashTree`2.Duplicates">
             <summary>
-            The list of <see cref="T:LightInject.KeyValue`2"/> instances where the 
+            The list of <see cref="T:LightInject.KeyValue`2"/> instances where the
             <see cref="F:LightInject.KeyValue`2.Key"/> has the same hash code as this <see cref="T:LightInject.ImmutableHashTree`2"/>.
             </summary>
         </member>
@@ -2726,19 +2766,13 @@
             Represents an MSIL instruction to be emitted into a dynamic method.
             </summary>
         </member>
-        <member name="M:LightInject.Instruction.#ctor(System.Reflection.Emit.OpCode,System.Action{LightInject.ILGenerator})">
+        <member name="M:LightInject.Instruction.#ctor(System.Reflection.Emit.OpCode,System.Action{System.Reflection.Emit.ILGenerator})">
             <summary>
             Initializes a new instance of the <see cref="T:LightInject.Instruction"/> class.
             </summary>
             <param name="code">The <see cref="T:System.Reflection.Emit.OpCode"/> to be emitted.</param>
-            <param name="emitAction">The action to be performed against an <see cref="T:LightInject.ILGenerator"/>
+            <param name="emitAction">The action to be performed against an <see cref="T:System.Reflection.Emit.ILGenerator"/>
             when this <see cref="T:LightInject.Instruction"/> is emitted.</param>
-        </member>
-        <member name="M:LightInject.Instruction.ToString">
-            <summary>
-            Returns the string representation of an <see cref="T:LightInject.Instruction"/>.
-            </summary>
-            <returns>The string representation of an <see cref="T:LightInject.Instruction"/>.</returns>
         </member>
         <member name="P:LightInject.Instruction.Code">
             <summary>
@@ -2747,9 +2781,15 @@
         </member>
         <member name="P:LightInject.Instruction.Emit">
             <summary>
-            Gets the action to be performed against an <see cref="T:LightInject.ILGenerator"/>
+            Gets the action to be performed against an <see cref="T:System.Reflection.Emit.ILGenerator"/>
             when this <see cref="T:LightInject.Instruction"/> is emitted.
             </summary>
+        </member>
+        <member name="M:LightInject.Instruction.ToString">
+            <summary>
+            Returns the string representation of an <see cref="T:LightInject.Instruction"/>.
+            </summary>
+            <returns>The string representation of an <see cref="T:LightInject.Instruction"/>.</returns>
         </member>
         <member name="T:LightInject.Instruction`1">
             <summary>
@@ -2757,14 +2797,19 @@
             </summary>
             <typeparam name="T">The type of argument used in this instruction.</typeparam>
         </member>
-        <member name="M:LightInject.Instruction`1.#ctor(System.Reflection.Emit.OpCode,`0,System.Action{LightInject.ILGenerator})">
+        <member name="M:LightInject.Instruction`1.#ctor(System.Reflection.Emit.OpCode,`0,System.Action{System.Reflection.Emit.ILGenerator})">
             <summary>
             Initializes a new instance of the <see cref="T:LightInject.Instruction`1"/> class.
             </summary>
             <param name="code">The <see cref="T:System.Reflection.Emit.OpCode"/> to be emitted.</param>
             <param name="argument">The argument be passed along with the given <paramref name="code"/>.</param>
-            <param name="emitAction">The action to be performed against an <see cref="T:LightInject.ILGenerator"/>
+            <param name="emitAction">The action to be performed against an <see cref="T:System.Reflection.Emit.ILGenerator"/>
             when this <see cref="T:LightInject.Instruction"/> is emitted.</param>
+        </member>
+        <member name="P:LightInject.Instruction`1.Argument">
+            <summary>
+            Gets the argument be passed along with the given <see cref="P:LightInject.Instruction.Code"/>.
+            </summary>
         </member>
         <member name="M:LightInject.Instruction`1.ToString">
             <summary>
@@ -2772,23 +2817,28 @@
             </summary>
             <returns>The string representation of an <see cref="T:LightInject.Instruction`1"/>.</returns>
         </member>
-        <member name="P:LightInject.Instruction`1.Argument">
-            <summary>
-            Gets the argument be passed along with the given <see cref="P:LightInject.Instruction.Code"/>.
-            </summary>
-        </member>
         <member name="T:LightInject.Emitter">
             <summary>
-            An abstraction of the <see cref="T:LightInject.ILGenerator"/> class that provides information 
+            An abstraction of the <see cref="T:System.Reflection.Emit.ILGenerator"/> class that provides information
             about the <see cref="T:System.Type"/> currently on the stack.
             </summary>
         </member>
-        <member name="M:LightInject.Emitter.#ctor(LightInject.ILGenerator,System.Type[])">
+        <member name="M:LightInject.Emitter.#ctor(System.Reflection.Emit.ILGenerator,System.Type[])">
             <summary>
             Initializes a new instance of the <see cref="T:LightInject.Emitter"/> class.
             </summary>
-            <param name="generator">The <see cref="T:LightInject.ILGenerator"/> used to emit MSIL instructions.</param>
+            <param name="generator">The <see cref="T:System.Reflection.Emit.ILGenerator"/> used to emit MSIL instructions.</param>
             <param name="parameterTypes">The list of parameter types used by the current dynamic method.</param>
+        </member>
+        <member name="P:LightInject.Emitter.StackType">
+            <summary>
+            Gets the <see cref="T:System.Type"/> currently on the stack.
+            </summary>
+        </member>
+        <member name="P:LightInject.Emitter.Instructions">
+            <summary>
+            Gets a list containing each <see cref="T:LightInject.Instruction"/> to be emitted into the dynamic method.
+            </summary>
         </member>
         <member name="M:LightInject.Emitter.Emit(System.Reflection.Emit.OpCode)">
             <summary>
@@ -2802,13 +2852,6 @@
             </summary>
             <param name="code">The MSIL instruction to be put onto the stream.</param>
             <param name="arg">The numerical argument pushed onto the stream immediately after the instruction.</param>
-        </member>
-        <member name="M:LightInject.Emitter.Emit(System.Reflection.Emit.OpCode,System.String)">
-            <summary>
-            Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the metadata token for the given string.
-            </summary>
-            <param name="code">The MSIL instruction to be emitted onto the stream.</param>
-            <param name="arg">The String to be emitted.</param>
         </member>
         <member name="M:LightInject.Emitter.Emit(System.Reflection.Emit.OpCode,System.SByte)">
             <summary>
@@ -2838,7 +2881,7 @@
             <param name="code">The MSIL instruction to be emitted onto the stream.</param>
             <param name="constructor">A <see cref="T:System.Reflection.ConstructorInfo"/> representing a constructor.</param>
         </member>
-        <member name="M:LightInject.Emitter.Emit(System.Reflection.Emit.OpCode,LightInject.LocalBuilder)">
+        <member name="M:LightInject.Emitter.Emit(System.Reflection.Emit.OpCode,System.Reflection.Emit.LocalBuilder)">
             <summary>
             Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the index of the given local variable.
             </summary>
@@ -2859,15 +2902,142 @@
             <param name="type">A <see cref="T:System.Type"/> object that represents the type of the local variable.</param>
             <returns>The declared local variable.</returns>
         </member>
-        <member name="P:LightInject.Emitter.StackType">
+        <member name="T:LightInject.LogicalThreadStorage`1">
             <summary>
-            Gets the <see cref="T:System.Type"/> currently on the stack.
+            Provides storage per logical thread of execution.
+            </summary>
+            <typeparam name="T">The type of the value contained in this <see cref="T:LightInject.LogicalThreadStorage`1"/>.</typeparam>
+        </member>
+        <member name="M:LightInject.LogicalThreadStorage`1.#ctor(System.Func{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:LightInject.LogicalThreadStorage`1"/> class.
+            </summary>
+            <param name="valueFactory">The value factory used to create an instance of <typeparamref name="T"/>.</param>
+        </member>
+        <member name="P:LightInject.LogicalThreadStorage`1.Value">
+            <summary>
+            Gets the value for the current logical thread of execution.
+            </summary>
+            <value>
+            The value for the current logical thread of execution.
+            </value>
+        </member>
+        <member name="T:LightInject.TypeHelper">
+            <summary>
+            Contains a set of extension method that represents
+            a compability layer for reflection methods.
             </summary>
         </member>
-        <member name="P:LightInject.Emitter.Instructions">
+        <member name="M:LightInject.TypeHelper.GetMethodInfo(System.Delegate)">
             <summary>
-            Gets a list containing each <see cref="T:LightInject.Instruction"/> to be emitted into the dynamic method.
+            Gets the method represented by the delegate.
             </summary>
+            <param name="del">The target <see cref="T:System.Delegate"/>.</param>
+            <returns>The method represented by the delegate.</returns>
+        </member>
+        <member name="M:LightInject.TypeHelper.GetPrivateMethod(System.Type,System.String)">
+            <summary>
+            Gets a <see cref="T:System.Reflection.MethodInfo"/> that represents a private method on the target <paramref name="type"/>.
+            </summary>
+            <param name="type">The target <see cref="T:System.Type"/>.</param>
+            <param name="name">The name of the private method.</param>
+            <returns>A <see cref="T:System.Reflection.MethodInfo"/> that represents a private method on the target <paramref name="type"/>.</returns>
+        </member>
+        <member name="M:LightInject.TypeHelper.GetPrivateStaticMethod(System.Type,System.String)">
+            <summary>
+            Gets a <see cref="T:System.Reflection.MethodInfo"/> that represents a private static method on the target <paramref name="type"/>.
+            </summary>
+            <param name="type">The target <see cref="T:System.Type"/>.</param>
+            <param name="name">The name of the private method.</param>
+            <returns>A <see cref="T:System.Reflection.MethodInfo"/> that represents a private static method on the target <paramref name="type"/>.</returns>
+        </member>
+        <member name="M:LightInject.TypeHelper.GetPrivateStaticMethods(System.Type)">
+            <summary>
+            Gets an array of <see cref="T:System.Reflection.MethodInfo"/> objects that represents private static methods on the target <paramref name="type"/>.
+            </summary>
+            <param name="type">The target <see cref="T:System.Type"/>.</param>
+            <returns>An array of <see cref="T:System.Reflection.MethodInfo"/> objects that represents private static methods on the target <paramref name="type"/>.</returns>
+        </member>
+        <member name="M:LightInject.TypeHelper.GetCustomAttributes(System.Reflection.Assembly,System.Type)">
+            <summary>
+            Gets the custom attributes for this <paramref name="assembly"/>.
+            </summary>
+            <param name="assembly">The target <see cref="T:System.Reflection.Assembly"/>.</param>
+            <param name="attributeType">The type of <see cref="T:System.Attribute"/> objects to return.</param>
+            <returns>The custom attributes for this <paramref name="assembly"/>.</returns>
+        </member>
+        <member name="M:LightInject.TypeHelper.IsEnumerableOfT(System.Type)">
+            <summary>
+            Gets a value indicating whether the <see cref="T:System.Type"/> is an <see cref="T:System.Collections.Generic.IEnumerable`1"/> type.
+            </summary>
+            <param name="type">The target <see cref="T:System.Type"/>.</param>
+            <returns>true if the <see cref="T:System.Type"/> is an <see cref="T:System.Collections.Generic.IEnumerable`1"/>; otherwise, false.</returns>
+        </member>
+        <member name="M:LightInject.TypeHelper.IsListOfT(System.Type)">
+            <summary>
+            Gets a value indicating whether the <see cref="T:System.Type"/> is an <see cref="T:System.Collections.Generic.IList`1"/> type.
+            </summary>
+            <param name="type">The target <see cref="T:System.Type"/>.</param>
+            <returns>true if the <see cref="T:System.Type"/> is an <see cref="T:System.Collections.Generic.IList`1"/>; otherwise, false.</returns>
+        </member>
+        <member name="M:LightInject.TypeHelper.IsCollectionOfT(System.Type)">
+            <summary>
+            Gets a value indicating whether the <see cref="T:System.Type"/> is an <see cref="T:System.Collections.Generic.ICollection`1"/> type.
+            </summary>
+            <param name="type">The target <see cref="T:System.Type"/>.</param>
+            <returns>true if the <see cref="T:System.Type"/> is an <see cref="T:System.Collections.Generic.ICollection`1"/>; otherwise, false.</returns>
+        </member>
+        <member name="M:LightInject.TypeHelper.IsReadOnlyCollectionOfT(System.Type)">
+            <summary>
+            Gets a value indicating whether the <see cref="T:System.Type"/> is an <see cref="T:System.Collections.Generic.IReadOnlyCollection`1"/> type.
+            </summary>
+            <param name="type">The target <see cref="T:System.Type"/>.</param>
+            <returns>true if the <see cref="T:System.Type"/> is an <see cref="T:System.Collections.Generic.IReadOnlyCollection`1"/>; otherwise, false.</returns>
+        </member>
+        <member name="M:LightInject.TypeHelper.IsReadOnlyListOfT(System.Type)">
+            <summary>
+            Gets a value indicating whether the <see cref="T:System.Type"/> is an <see cref="T:System.Collections.Generic.IReadOnlyList`1"/> type.
+            </summary>
+            <param name="type">The target <see cref="T:System.Type"/>.</param>
+            <returns>true if the <see cref="T:System.Type"/> is an <see cref="T:System.Collections.Generic.IReadOnlyList`1"/>; otherwise, false.</returns>
+        </member>
+        <member name="M:LightInject.TypeHelper.IsLazy(System.Type)">
+            <summary>
+            Gets a value indicating whether the <see cref="T:System.Type"/> is an <see cref="T:System.Lazy`1"/> type.
+            </summary>
+            <param name="type">The target <see cref="T:System.Type"/>.</param>
+            <returns>true if the <see cref="T:System.Type"/> is an <see cref="T:System.Lazy`1"/>; otherwise, false.</returns>
+        </member>
+        <member name="M:LightInject.TypeHelper.IsFunc(System.Type)">
+            <summary>
+            Gets a value indicating whether the <see cref="T:System.Type"/> is an <see cref="T:System.Func`1"/> type.
+            </summary>
+            <param name="type">The target <see cref="T:System.Type"/>.</param>
+            <returns>true if the <see cref="T:System.Type"/> is an <see cref="T:System.Func`1"/>; otherwise, false.</returns>
+        </member>
+        <member name="M:LightInject.TypeHelper.IsFuncWithParameters(System.Type)">
+            <summary>
+            Gets a value indicating whether the <see cref="T:System.Type"/> is an <see cref="T:System.Func`2"/>,
+            <see cref="T:System.Func`3"/>, <see cref="T:System.Func`4"/> or an <see cref="T:System.Func`5"/>.
+            </summary>
+            <param name="type">The target <see cref="T:System.Type"/>.</param>
+            <returns>true if the <see cref="T:System.Type"/> is an <see cref="T:System.Func`2"/>, <see cref="T:System.Func`3"/>, <see cref="T:System.Func`4"/> or an <see cref="T:System.Func`5"/>; otherwise, false.</returns>
+        </member>
+        <member name="M:LightInject.TypeHelper.IsClosedGeneric(System.Type)">
+            <summary>
+            Gets a value indicating whether the <see cref="T:System.Type"/> is a closed generic type.
+            </summary>
+            <param name="type">The target <see cref="T:System.Type"/>.</param>
+            <returns>true if the <see cref="T:System.Type"/> is a closed generic type; otherwise, false.</returns>
+        </member>
+        <member name="M:LightInject.TypeHelper.GetElementType(System.Type)">
+            <summary>
+            Returns the <see cref="T:System.Type"/> of the object encompassed or referred to by the current array, pointer or reference type.
+            </summary>
+            <param name="type">The target <see cref="T:System.Type"/>.</param>
+            <returns>The <see cref="T:System.Type"/> of the object encompassed or referred to by the current array, pointer, or reference type,
+            or null if the current Type is not an array or a pointer, or is not passed by reference,
+            or represents a generic type or a type parameter in the definition of a generic type or generic method.</returns>
         </member>
     </members>
 </doc>
