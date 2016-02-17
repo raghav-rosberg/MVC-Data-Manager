@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using MvcDataManager;
 
 namespace MvcUserManagement.data.EmployeeRespository
 {

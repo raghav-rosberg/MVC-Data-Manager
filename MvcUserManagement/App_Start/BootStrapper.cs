@@ -1,17 +1,7 @@
-﻿using System.Data.Entity;
-using MvcDataManager;
+﻿using MvcDataManager;
 using MvcUserManagement.data;
 using MvcUserManagement.data.EmployeeRespository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Web;
-using System.Web.Mvc;
-using System.Reflection;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity;
-
 using LightInject;
 
 

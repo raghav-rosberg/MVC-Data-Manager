@@ -26,3 +26,6 @@ How to use
 3. Create an MVC application and add a reference to data layer and "MvcDataManager.Model" from Nuget Package Manager using the command "Install-Package MvcDataManager.Model" (website link: https://www.nuget.org/packages/MvcDataManager.Model). 
 4. Get in to the folder "Content\MvcDataManagerSampleCode" and set up MVC application as shown in the sample code.
 5. Refer Bootstap and Jquery in the MVC application (recommended to link Bootstrap and Jquery in "Layout" page).
+
+Download complete code from "https://github.com/raghav-rosberg/MvcDataManager"
+Download sample reference project on how to use "MVC Data Manager" from "https://github.com/raghav-rosberg/MvcUserManagement"

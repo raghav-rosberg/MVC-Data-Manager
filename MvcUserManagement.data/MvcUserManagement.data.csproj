@@ -77,11 +77,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MvcDataManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\MvcDataManager\MvcDataManager\bin\Release\MvcDataManager.dll</HintPath>
+      <HintPath>..\packages\MvcDataManager.1.0.0.16\lib\net45\MvcDataManager.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="MvcDataManager.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvcDataManager.Model.1.0.0.2\lib\net45\MvcDataManager.Model.dll</HintPath>
+      <HintPath>..\packages\MvcDataManager.Model.1.0.0.3\lib\net45\MvcDataManager.Model.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
