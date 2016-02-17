@@ -16,9 +16,10 @@ namespace MvcUserManagement.App_Start
 
         private static void SetAutoFacContainer()
         {
+            var dbcontext = new MvcUserManagementDbContext();
             var container = new ServiceContainer();
             container.RegisterControllers(Assembly.GetExecutingAssembly());
-            container.Register<IUnitOfWork>((factory) => new UnitOfWork(new MvcUserManagementDbContext()));
+            container.Register<IUnitOfWork>((factory) => new UnitOfWork(dbcontext));
             container.Register(typeof(IRepository<>), typeof(RepositoryBase<>));
             container.Register<IEmployeeRepository, EmployeeRepository>(new PerRequestLifeTime());
             container.EnableMvc();
